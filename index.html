@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Griffin's Rise: Advanced Trading Journal — Pro Edition</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Griffin's Rise: Advanced Trading Journal Pro Edition - Professional trading journal for tracking trades, managing risk, and improving trading performance." />
+  <meta name="keywords" content="trading journal, trade tracker, risk management, trading education, financial analysis" />
+  <meta name="author" content="Griffin's Rise" />
+  <title>Griffin's Rise: Advanced Trading Journal — Pro Edition</title>
   <!-- Tailwind for utility classes -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- FontAwesome for icons -->
@@ -544,30 +547,30 @@
           <span class="badge mt-2 ml-1 align-middle text-base pro-badge">PRO EDITION</span>
         </div>
       </div>
-      <nav class="flex flex-wrap gap-1 md:gap-2 items-center mt-4 md:mt-0">
-        <button id="educationTab" class="tab-btn bg-gray-700 hover:bg-blue-800 px-4 py-2 rounded transition hidden">Education</button>
-        <button id="syllabusTab" class="tab-btn bg-blue-900 hover:bg-blue-700 px-4 py-2 rounded transition hidden">Syllabus</button>
-        <button id="trainingManualTab" class="tab-btn bg-yellow-700 hover:bg-yellow-600 px-4 py-2 rounded transition hidden">Training Manual</button>
-        <button id="journalTab" class="tab-btn bg-gray-700 hover:bg-blue-900 px-4 py-2 rounded transition hidden">Journal</button>
-        <button id="dashboardTab" class="tab-btn bg-gray-700 hover:bg-blue-900 px-4 py-2 rounded transition hidden">Dashboard</button>
-        <button id="loginTab" class="tab-btn bg-green-700 hover:bg-green-600 px-4 py-2 rounded transition">Register / Login</button>
+      <nav class="flex flex-wrap gap-1 md:gap-2 items-center mt-4 md:mt-0" role="navigation" aria-label="Main navigation">
+        <button id="educationTab" class="tab-btn bg-gray-700 hover:bg-blue-800 px-4 py-2 rounded transition hidden" role="tab" aria-selected="false">Education</button>
+        <button id="syllabusTab" class="tab-btn bg-blue-900 hover:bg-blue-700 px-4 py-2 rounded transition hidden" role="tab" aria-selected="false">Syllabus</button>
+        <button id="trainingManualTab" class="tab-btn bg-yellow-700 hover:bg-yellow-600 px-4 py-2 rounded transition hidden" role="tab" aria-selected="false">Training Manual</button>
+        <button id="journalTab" class="tab-btn bg-gray-700 hover:bg-blue-900 px-4 py-2 rounded transition hidden" role="tab" aria-selected="false">Journal</button>
+        <button id="dashboardTab" class="tab-btn bg-gray-700 hover:bg-blue-900 px-4 py-2 rounded transition hidden" role="tab" aria-selected="false">Dashboard</button>
+        <button id="loginTab" class="tab-btn bg-green-700 hover:bg-green-600 px-4 py-2 rounded transition" role="tab" aria-selected="true">Register / Login</button>
         <button id="logoutBtn" class="tab-btn bg-red-700 hover:bg-red-800 px-4 py-2 rounded transition hidden">Logout</button>
       </nav>
     </div>
   </header>
   <main class="container mx-auto px-4 max-w-4xl">
     <!-- Login/Register -->
-    <section id="loginContent">
+    <section id="loginContent" role="tabpanel" aria-labelledby="loginTab">
       <div class="manual-section p-6 rounded-lg shadow-lg max-w-md mx-auto mt-8">
         <h2 class="text-2xl font-bold mb-4 text-green-400 text-center">Register / Login</h2>
         <form id="loginForm" class="space-y-4">
           <div>
             <label class="block mb-1" for="login-username">Username</label>
-            <input id="login-username" type="text" class="w-full px-3 py-2 rounded" required />
+            <input id="login-username" type="text" class="w-full px-3 py-2 rounded" autocomplete="username" required />
           </div>
           <div>
             <label class="block mb-1" for="login-password">Password</label>
-            <input id="login-password" type="password" class="w-full px-3 py-2 rounded" required />
+            <input id="login-password" type="password" class="w-full px-3 py-2 rounded" autocomplete="current-password" required />
           </div>
           <div class="flex justify-between items-center">
             <button type="submit" class="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded font-semibold transition">Login</button>
@@ -577,15 +580,15 @@
         <form id="registerForm" class="space-y-4 hidden">
           <div>
             <label class="block mb-1" for="register-username">Username</label>
-            <input id="register-username" type="text" class="w-full px-3 py-2 rounded" required />
+            <input id="register-username" type="text" class="w-full px-3 py-2 rounded" autocomplete="username" required />
           </div>
           <div>
             <label class="block mb-1" for="register-password">Password</label>
-            <input id="register-password" type="password" class="w-full px-3 py-2 rounded" required />
+            <input id="register-password" type="password" class="w-full px-3 py-2 rounded" autocomplete="new-password" required />
           </div>
           <div>
             <label class="block mb-1" for="register-confirm">Confirm Password</label>
-            <input id="register-confirm" type="password" class="w-full px-3 py-2 rounded" required />
+            <input id="register-confirm" type="password" class="w-full px-3 py-2 rounded" autocomplete="new-password" required />
           </div>
           <div class="flex justify-between items-center">
             <button type="submit" class="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded font-semibold transition">Register</button>
@@ -597,7 +600,7 @@
     </section>
 
    <!-- Education Tab -->
-<section id="educationContent" class="hidden">
+<section id="educationContent" class="hidden" role="tabpanel" aria-labelledby="educationTab">
   <div class="manual-section p-8 rounded-xl shadow mb-8">
     <div class="flex flex-col md:flex-row items-center gap-8">
       <div class="md:w-2/3">
@@ -630,7 +633,7 @@
   </div>
 </section>
 <!-- Griffin's Rise Trading Mastery Syllabus (Pro Edition) -->
-<section id="syllabusContent">
+<section id="syllabusContent" role="tabpanel" aria-labelledby="syllabusTab">
   <div class="syllabus-container">
     <!-- Header -->
     <div class="syllabus-header">
@@ -718,7 +721,8 @@
     gap:1rem;
     cursor:pointer;
     padding:1.5rem 1.3rem 1.2rem 1.3rem;
-    user-select:none; -webkit-user-select:none;
+    -webkit-user-select:none;
+    user-select:none;
     background:rgba(255,255,255,0.04);
     transition:.2s;
   }
@@ -1199,7 +1203,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <!-- Training Manual -->
 <!-- Training Manual Section: Professional Pro Edition -->
-<section id="trainingManualContent" class="hidden">
+<section id="trainingManualContent" class="hidden" role="tabpanel" aria-labelledby="trainingManualTab">
   <div class="max-w-6xl mx-auto p-6">
     <!-- Header Section -->
     <div class="bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl p-6 mb-8 shadow-xl">
@@ -1643,7 +1647,7 @@ document.addEventListener('DOMContentLoaded', function() {
   </style>
 </section>
 <!-- Trading Journal & Syllabus Pro: Now with Dashboard Sync -->
-<section id="journalContent" class="hidden">
+<section id="journalContent" class="hidden" role="tabpanel" aria-labelledby="journalTab">
   <div class="manual-section p-8 rounded-xl shadow mb-8 mx-auto max-width-100rem">
 
     <!-- HEADER + BADGES/PROGRESS -->
@@ -1841,7 +1845,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </section>
  <!-- Dashboard -->
 <!-- DASHBOARD SECTION: Clean, Synced, Standalone, Paste-Ready -->
-<section id="dashboardContent" class="hidden">
+<section id="dashboardContent" class="hidden" role="tabpanel" aria-labelledby="dashboardTab">
   <div class="dashboard-section p-8 rounded-xl shadow mb-8 mx-auto max-w-7xl">
     <h2 class="text-3xl font-extrabold mb-3 text-blue-200">Dashboard Overview</h2>
     <ul class="mt-4 list-disc ml-8 text-blue-50 text-base space-y-1">
@@ -2514,7 +2518,6 @@ document.getElementById("journalExportBtn").onclick = function() {
   setTimeout(() => {
     document.getElementById("journal-message").textContent = "";
   }, 3000);
-};
 };
 </script>
 
