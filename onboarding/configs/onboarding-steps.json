@@ -1,0 +1,156 @@
+{
+  "onboardingSteps": [
+    {
+      "id": "welcome",
+      "title": "Welcome to Griffin's Rise Trading Journal!",
+      "description": "Let's get you set up for trading success. This onboarding will guide you through securing your accounts, making test trades, and setting up your journal.",
+      "icon": "fas fa-home",
+      "completed": false,
+      "actions": [
+        {
+          "type": "banner",
+          "content": "🎯 Your journey to trading mastery starts here!"
+        }
+      ]
+    },
+    {
+      "id": "email-verification",
+      "title": "Verify Your Email",
+      "description": "Secure your account by verifying your email address. This helps us keep your trading data safe.",
+      "icon": "fas fa-envelope-check",
+      "completed": false,
+      "actions": [
+        {
+          "type": "email-prompt",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "2fa-setup",
+      "title": "Enable Two-Factor Authentication",
+      "description": "Add an extra layer of security to protect your trading journal and sensitive data.",
+      "icon": "fas fa-shield-alt",
+      "completed": false,
+      "actions": [
+        {
+          "type": "2fa-prompt",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "cefi-security",
+      "title": "Secure Your CeFi Accounts",
+      "description": "Learn how to properly secure your centralized exchange accounts (Binance, Coinbase, etc.)",
+      "icon": "fas fa-university",
+      "completed": false,
+      "actions": [
+        {
+          "type": "guide",
+          "guideId": "cefi-security"
+        },
+        {
+          "type": "checklist",
+          "items": [
+            "Enable 2FA on all exchange accounts",
+            "Set up API keys with trading permissions only",
+            "Review and set withdrawal limits",
+            "Enable email notifications for logins"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "defi-setup",
+      "title": "Set Up DeFi Wallets",
+      "description": "Configure your decentralized finance wallets safely and securely.",
+      "icon": "fas fa-wallet",
+      "completed": false,
+      "actions": [
+        {
+          "type": "guide",
+          "guideId": "defi-wallets"
+        },
+        {
+          "type": "checklist",
+          "items": [
+            "Install MetaMask or preferred wallet",
+            "Securely store recovery phrase offline",
+            "Test wallet with small amounts first",
+            "Set up hardware wallet (recommended)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "test-trades",
+      "title": "Place Test Trades",
+      "description": "Practice with small amounts to familiarize yourself with the trading process.",
+      "icon": "fas fa-chart-line",
+      "completed": false,
+      "actions": [
+        {
+          "type": "guide",
+          "guideId": "test-trades"
+        },
+        {
+          "type": "checklist",
+          "items": [
+            "Execute a small long position",
+            "Execute a small short position",
+            "Practice setting stop losses",
+            "Practice taking profits"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "journal-setup",
+      "title": "Set Up Your Trading Journal",
+      "description": "Learn how to effectively document your trades and track your progress.",
+      "icon": "fas fa-book",
+      "completed": false,
+      "actions": [
+        {
+          "type": "guide",
+          "guideId": "journaling-basics"
+        },
+        {
+          "type": "demo",
+          "demoId": "journal-entry"
+        }
+      ]
+    },
+    {
+      "id": "education-tour",
+      "title": "Explore Education Resources",
+      "description": "Discover the training materials, syllabus, and video content available to you.",
+      "icon": "fas fa-graduation-cap",
+      "completed": false,
+      "actions": [
+        {
+          "type": "tour",
+          "sections": ["education", "syllabus", "training-manual"]
+        }
+      ]
+    },
+    {
+      "id": "completion",
+      "title": "Onboarding Complete!",
+      "description": "Congratulations! You're ready to start your trading journey with Griffin's Rise.",
+      "icon": "fas fa-trophy",
+      "completed": false,
+      "actions": [
+        {
+          "type": "celebration",
+          "message": "🎉 Welcome to the Griffin's Rise community!"
+        },
+        {
+          "type": "badge",
+          "badgeId": "onboarding-complete"
+        }
+      ]
+    }
+  ]
+}

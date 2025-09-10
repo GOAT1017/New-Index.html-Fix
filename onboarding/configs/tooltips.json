@@ -1,0 +1,84 @@
+{
+  "tooltips": {
+    "login-username": {
+      "text": "Choose a unique username that you'll remember. This will be your identity in the Griffin's Rise community.",
+      "position": "bottom"
+    },
+    "login-password": {
+      "text": "Use a strong password with at least 8 characters, including numbers and symbols.",
+      "position": "bottom"
+    },
+    "register-confirm": {
+      "text": "Re-enter your password to make sure it matches exactly.",
+      "position": "bottom"
+    },
+    "journal-date": {
+      "text": "Enter the date when you opened this position. Use YYYY-MM-DD format for consistency.",
+      "position": "top"
+    },
+    "journal-asset": {
+      "text": "The trading pair or asset symbol (e.g., BTC/USD, ETH/USDT, AAPL).",
+      "position": "top"
+    },
+    "journal-direction": {
+      "text": "Select 'Long' if you're betting the price will go up, 'Short' if you're betting it will go down.",
+      "position": "top"
+    },
+    "journal-thesis": {
+      "text": "Write your reasoning for this trade. What analysis led you to this decision? This is crucial for learning.",
+      "position": "top"
+    },
+    "journal-entry": {
+      "text": "The price at which you entered the position. Be precise for accurate P&L calculations.",
+      "position": "top"
+    },
+    "journal-exit": {
+      "text": "The price at which you closed the position. Leave blank for open positions.",
+      "position": "top"
+    },
+    "journal-sl": {
+      "text": "Stop Loss: The price at which you'll cut your losses if the trade goes against you.",
+      "position": "top"
+    },
+    "journal-tp": {
+      "text": "Take Profit: The price at which you plan to close the position for a profit.",
+      "position": "top"
+    },
+    "journal-size": {
+      "text": "Position size in dollars or percentage of portfolio. This affects your risk management.",
+      "position": "top"
+    },
+    "journal-emotion": {
+      "text": "How did you feel during this trade? Tracking emotions helps identify psychological patterns.",
+      "position": "top"
+    },
+    "journal-mistakes": {
+      "text": "What could you have done better? Honest self-reflection is key to improvement.",
+      "position": "top"
+    },
+    "dashboardTab": {
+      "text": "View your trading statistics, performance charts, and analytics here.",
+      "position": "bottom"
+    },
+    "educationTab": {
+      "text": "Access comprehensive trading education, guides, and video tutorials.",
+      "position": "bottom"
+    },
+    "syllabusTab": {
+      "text": "Follow the structured learning path from beginner to advanced trading mastery.",
+      "position": "bottom"
+    },
+    "journalTab": {
+      "text": "Log your trades, track performance, and analyze your trading patterns.",
+      "position": "bottom"
+    },
+    "2fa-setup": {
+      "text": "Two-Factor Authentication adds extra security to your account. We recommend using Google Authenticator or Authy.",
+      "position": "right"
+    },
+    "recovery-key": {
+      "text": "Store this recovery key safely offline. You'll need it to recover your account if you lose access.",
+      "position": "right"
+    }
+  }
+}

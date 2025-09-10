@@ -551,12 +551,96 @@
       </div>
     </section>
 
+    <!-- Onboarding Modal -->
+    <div id="onboardingModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-gray-800 rounded-xl p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-bold text-blue-100">Welcome to Griffin's Rise!</h2>
+          <button id="closeOnboarding" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+        </div>
+        
+        <!-- Welcome Banner -->
+        <div id="welcomeBanner" class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-6 mb-6 text-center">
+          <h3 class="text-xl font-bold text-white mb-2">🎯 Your Journey to Trading Mastery Begins Now!</h3>
+          <p class="text-blue-100">Let's get you set up for trading success with our step-by-step onboarding process.</p>
+        </div>
+
+        <!-- Progress Tracker -->
+        <div class="mb-8">
+          <div class="flex justify-between items-center mb-4">
+            <h4 class="text-lg font-semibold text-blue-100">Onboarding Progress</h4>
+            <span id="onboardingProgressText" class="text-sm text-gray-300">0 / 9 Steps Complete</span>
+          </div>
+          <div class="w-full bg-gray-700 rounded-full h-3">
+            <div id="onboardingProgressBar" class="bg-gradient-to-r from-blue-500 to-green-500 h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- Onboarding Steps -->
+        <div id="onboardingSteps" class="space-y-4">
+          <!-- Steps will be dynamically generated -->
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex justify-between mt-8">
+          <button id="skipOnboarding" class="px-4 py-2 text-gray-400 hover:text-white transition">Skip for Now</button>
+          <div class="space-x-4">
+            <button id="prevOnboardingStep" class="px-6 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded transition hidden">Previous</button>
+            <button id="nextOnboardingStep" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded transition">Next Step</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Email Verification Modal -->
+    <div id="emailVerificationModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-gray-800 rounded-xl p-8 max-w-md w-full mx-4">
+        <h3 class="text-xl font-bold text-blue-100 mb-4">Verify Your Email</h3>
+        <p class="text-gray-300 mb-6">Enter your email address to secure your account and receive important updates.</p>
+        <form id="emailVerificationForm">
+          <div class="mb-4">
+            <label class="block mb-2 text-sm font-medium text-gray-300" for="verificationEmail">Email Address</label>
+            <input type="email" id="verificationEmail" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-blue-500" required>
+          </div>
+          <div class="flex justify-end space-x-4">
+            <button type="button" id="skipEmailVerification" class="px-4 py-2 text-gray-400 hover:text-white transition">Skip</button>
+            <button type="submit" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition">Verify Email</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- 2FA Setup Modal -->
+    <div id="twoFactorModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-gray-800 rounded-xl p-8 max-w-md w-full mx-4">
+        <h3 class="text-xl font-bold text-blue-100 mb-4">Set Up Two-Factor Authentication</h3>
+        <p class="text-gray-300 mb-6">Add an extra layer of security to your account with 2FA. We recommend using Google Authenticator or Authy.</p>
+        <div class="mb-6">
+          <div class="bg-gray-700 rounded-lg p-4 text-center">
+            <div class="text-6xl mb-2">📱</div>
+            <p class="text-sm text-gray-300">QR Code would appear here</p>
+            <p class="text-xs text-gray-500 mt-2">(Demo mode - actual QR code in production)</p>
+          </div>
+        </div>
+        <form id="twoFactorForm">
+          <div class="mb-4">
+            <label class="block mb-2 text-sm font-medium text-gray-300" for="twoFactorCode">Enter 6-digit code</label>
+            <input type="text" id="twoFactorCode" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-blue-500" maxlength="6" placeholder="123456">
+          </div>
+          <div class="flex justify-end space-x-4">
+            <button type="button" id="skip2FA" class="px-4 py-2 text-gray-400 hover:text-white transition">Skip</button>
+            <button type="submit" class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition">Enable 2FA</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
    <!-- Education Tab -->
 <section id="educationContent" class="hidden">
   <div class="manual-section p-8 rounded-xl shadow mb-8">
     <div class="flex flex-col md:flex-row items-center gap-8">
       <div class="md:w-2/3">
-        <h2 class="text-3xl font-extrabold mb-3 text-blue-100">Education</h2>
+        <h2 class="text-3xl font-extrabold mb-3 text-blue-100">Education & Training Center</h2>
         <ul class="mt-4 list-disc ml-8 text-blue-50 text-base space-y-1">
           <li>
             Explore the full curriculum in the
@@ -568,6 +652,9 @@
           <li>
             Access detailed, actionable how-to guides in the Training Manual.
           </li>
+          <li>
+            Watch video walkthroughs for visual learning.
+          </li>
         </ul>
         <div class="mt-6 bg-blue-900/90 border-l-4 border-blue-400 px-4 py-3 rounded">
           <b class="text-yellow-200">Tip:</b>
@@ -575,11 +662,235 @@
             Use the <span class="text-yellow-300">Training Manual</span> for step-by-step checklists. All progress is saved automatically.
           </span>
         </div>
+        <button id="startOnboardingBtn" class="mt-4 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition">
+          🚀 Start Onboarding Tour
+        </button>
       </div>
       <div class="md:w-1/3 flex justify-center">
         <img src="/public/griffin-rise-log.png"
              alt="Griffin's Rise Trading Journal Logo"
              class="w-[320px] max-w-full h-auto rounded-xl shadow ring-8 ring-yellow-200 ring-opacity-80 bg-white object-contain" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Education Tabs -->
+  <div class="mb-6">
+    <div class="flex flex-wrap gap-2">
+      <button id="guidesTabBtn" class="px-4 py-2 bg-blue-600 text-white rounded-lg transition hover:bg-blue-700">
+        📚 Written Guides
+      </button>
+      <button id="videosTabBtn" class="px-4 py-2 bg-gray-600 text-white rounded-lg transition hover:bg-gray-700">
+        🎥 Video Tutorials
+      </button>
+      <button id="checklistsTabBtn" class="px-4 py-2 bg-gray-600 text-white rounded-lg transition hover:bg-gray-700">
+        ✅ Quick Checklists
+      </button>
+    </div>
+  </div>
+
+  <!-- Written Guides Tab -->
+  <div id="guidesTab" class="education-tab-content">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-gray-800 rounded-lg p-6">
+        <h3 class="text-xl font-bold text-blue-100 mb-3">
+          <i class="fas fa-university mr-2"></i>CeFi Security Guide
+        </h3>
+        <p class="text-gray-300 mb-4">Learn how to properly secure your centralized exchange accounts with 2FA, API keys, and withdrawal settings.</p>
+        <div class="flex justify-between items-center">
+          <span class="text-sm text-yellow-300">⏱️ 10 min read</span>
+          <button class="view-guide-btn px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded transition" data-guide="cefi-security">
+            Read Guide
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-gray-800 rounded-lg p-6">
+        <h3 class="text-xl font-bold text-blue-100 mb-3">
+          <i class="fas fa-wallet mr-2"></i>DeFi Wallets Setup
+        </h3>
+        <p class="text-gray-300 mb-4">Step-by-step guide to setting up MetaMask, securing your recovery phrase, and connecting to DeFi protocols.</p>
+        <div class="flex justify-between items-center">
+          <span class="text-sm text-yellow-300">⏱️ 15 min read</span>
+          <button class="view-guide-btn px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded transition" data-guide="defi-wallets">
+            Read Guide
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-gray-800 rounded-lg p-6">
+        <h3 class="text-xl font-bold text-blue-100 mb-3">
+          <i class="fas fa-chart-line mr-2"></i>Test Trading Guide
+        </h3>
+        <p class="text-gray-300 mb-4">Practice with small amounts to familiarize yourself with order types, execution, and risk management.</p>
+        <div class="flex justify-between items-center">
+          <span class="text-sm text-yellow-300">⏱️ 12 min read</span>
+          <button class="view-guide-btn px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded transition" data-guide="test-trades">
+            Read Guide
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-gray-800 rounded-lg p-6">
+        <h3 class="text-xl font-bold text-blue-100 mb-3">
+          <i class="fas fa-book mr-2"></i>Journaling Basics
+        </h3>
+        <p class="text-gray-300 mb-4">Master the art of trading documentation with effective journaling techniques and analysis methods.</p>
+        <div class="flex justify-between items-center">
+          <span class="text-sm text-yellow-300">⏱️ 18 min read</span>
+          <button class="view-guide-btn px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded transition" data-guide="journaling-basics">
+            Read Guide
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Tutorials Tab -->
+  <div id="videosTab" class="education-tab-content hidden">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-gray-800 rounded-lg overflow-hidden">
+        <div class="relative">
+          <div class="bg-gray-700 h-48 flex items-center justify-center">
+            <div class="text-center">
+              <i class="fas fa-play-circle text-4xl text-blue-400 mb-2"></i>
+              <p class="text-gray-300">CeFi Security Setup</p>
+              <p class="text-sm text-gray-500">(Video Coming Soon)</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-4">
+          <h3 class="text-lg font-bold text-blue-100 mb-2">Secure Your Exchange Accounts</h3>
+          <p class="text-gray-300 text-sm mb-3">Visual walkthrough of 2FA setup, API configuration, and withdrawal security on major exchanges.</p>
+          <div class="flex justify-between items-center">
+            <span class="text-xs text-yellow-300">⏱️ 8-10 minutes</span>
+            <button class="px-3 py-1 bg-gray-600 text-gray-400 rounded text-sm" disabled>Coming Soon</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gray-800 rounded-lg overflow-hidden">
+        <div class="relative">
+          <div class="bg-gray-700 h-48 flex items-center justify-center">
+            <div class="text-center">
+              <i class="fas fa-play-circle text-4xl text-blue-400 mb-2"></i>
+              <p class="text-gray-300">DeFi Wallet Setup</p>
+              <p class="text-sm text-gray-500">(Video Coming Soon)</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-4">
+          <h3 class="text-lg font-bold text-blue-100 mb-2">MetaMask & Hardware Wallets</h3>
+          <p class="text-gray-300 text-sm mb-3">Complete guide to DeFi wallet installation, security setup, and hardware wallet integration.</p>
+          <div class="flex justify-between items-center">
+            <span class="text-xs text-yellow-300">⏱️ 12-15 minutes</span>
+            <button class="px-3 py-1 bg-gray-600 text-gray-400 rounded text-sm" disabled>Coming Soon</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gray-800 rounded-lg overflow-hidden">
+        <div class="relative">
+          <div class="bg-gray-700 h-48 flex items-center justify-center">
+            <div class="text-center">
+              <i class="fas fa-play-circle text-4xl text-blue-400 mb-2"></i>
+              <p class="text-gray-300">First Test Trades</p>
+              <p class="text-sm text-gray-500">(Video Coming Soon)</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-4">
+          <h3 class="text-lg font-bold text-blue-100 mb-2">Practice Trading Safely</h3>
+          <p class="text-gray-300 text-sm mb-3">Live demonstration of placing your first long and short positions with proper risk management.</p>
+          <div class="flex justify-between items-center">
+            <span class="text-xs text-yellow-300">⏱️ 10-12 minutes</span>
+            <button class="px-3 py-1 bg-gray-600 text-gray-400 rounded text-sm" disabled>Coming Soon</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gray-800 rounded-lg overflow-hidden">
+        <div class="relative">
+          <div class="bg-gray-700 h-48 flex items-center justify-center">
+            <div class="text-center">
+              <i class="fas fa-play-circle text-4xl text-blue-400 mb-2"></i>
+              <p class="text-gray-300">Journal Mastery</p>
+              <p class="text-sm text-gray-500">(Video Coming Soon)</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-4">
+          <h3 class="text-lg font-bold text-blue-100 mb-2">Effective Trade Documentation</h3>
+          <p class="text-gray-300 text-sm mb-3">Learn to analyze your trades, track emotions, and build a systematic improvement process.</p>
+          <div class="flex justify-between items-center">
+            <span class="text-xs text-yellow-300">⏱️ 15-18 minutes</span>
+            <button class="px-3 py-1 bg-gray-600 text-gray-400 rounded text-sm" disabled>Coming Soon</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Checklists Tab -->
+  <div id="checklistsTab" class="education-tab-content hidden">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-gray-800 rounded-lg p-6">
+        <h3 class="text-lg font-bold text-blue-100 mb-4">
+          <i class="fas fa-shield-alt mr-2"></i>Security Setup Checklist
+        </h3>
+        <div class="space-y-2 text-sm">
+          <label class="flex items-center">
+            <input type="checkbox" class="mr-2 text-blue-600"> 2FA enabled on all exchanges
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" class="mr-2"> API keys configured (trading only)
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" class="mr-2"> Withdrawal limits set
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" class="mr-2"> Email notifications enabled
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" class="mr-2"> Recovery phrases stored offline
+          </label>
+        </div>
+      </div>
+
+      <div class="bg-gray-800 rounded-lg p-6">
+        <h3 class="text-lg font-bold text-blue-100 mb-4">
+          <i class="fas fa-chart-line mr-2"></i>Pre-Trade Checklist
+        </h3>
+        <div class="space-y-2 text-sm">
+          <label class="flex items-center">
+            <input type="checkbox" class="mr-2"> Written thesis/setup reason
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" class="mr-2"> Stop loss level determined
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" class="mr-2"> Take profit target set
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" class="mr-2"> Position size calculated
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" class="mr-2"> Risk % within limits
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Guide Modal -->
+  <div id="guideModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-gray-800 rounded-xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-hidden">
+      <div class="flex justify-between items-center p-6 border-b border-gray-700">
+        <h2 id="guideTitle" class="text-xl font-bold text-blue-100"></h2>
+        <button id="closeGuide" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+      </div>
+      <div id="guideContent" class="p-6 overflow-y-auto max-h-[70vh] prose prose-invert max-w-none">
+        <!-- Guide content will be loaded here -->
       </div>
     </div>
   </div>
@@ -1150,6 +1461,791 @@ document.addEventListener('DOMContentLoaded', function() {
       renderSyllabus();
     }
   };
+});
+</script>
+
+<!-- Onboarding and Tooltip System -->
+<script>
+// Onboarding System
+const OnboardingSystem = {
+  steps: [],
+  currentStep: 0,
+  isFirstLogin: false,
+
+  async init() {
+    // Load onboarding configuration
+    this.steps = await this.loadOnboardingSteps();
+    this.isFirstLogin = !localStorage.getItem('hasCompletedOnboarding');
+    
+    // Set up event listeners
+    this.setupEventListeners();
+    
+    // Check if should show onboarding
+    if (this.isFirstLogin && isLoggedIn()) {
+      this.showOnboarding();
+    }
+  },
+
+  async loadOnboardingSteps() {
+    // In a real app, this would fetch from the JSON file
+    // For now, we'll inline the essential steps
+    return [
+      {
+        id: "welcome",
+        title: "Welcome to Griffin's Rise Trading Journal!",
+        description: "Let's get you set up for trading success. This onboarding will guide you through securing your accounts, making test trades, and setting up your journal.",
+        icon: "fas fa-home",
+        completed: false
+      },
+      {
+        id: "email-verification",
+        title: "Verify Your Email",
+        description: "Secure your account by verifying your email address. This helps us keep your trading data safe.",
+        icon: "fas fa-envelope-check",
+        completed: false
+      },
+      {
+        id: "2fa-setup",
+        title: "Enable Two-Factor Authentication",
+        description: "Add an extra layer of security to protect your trading journal and sensitive data.",
+        icon: "fas fa-shield-alt",
+        completed: false
+      },
+      {
+        id: "cefi-security",
+        title: "Secure Your CeFi Accounts",
+        description: "Learn how to properly secure your centralized exchange accounts (Binance, Coinbase, etc.)",
+        icon: "fas fa-university",
+        completed: false
+      },
+      {
+        id: "defi-setup",
+        title: "Set Up DeFi Wallets",
+        description: "Configure your decentralized finance wallets safely and securely.",
+        icon: "fas fa-wallet",
+        completed: false
+      },
+      {
+        id: "test-trades",
+        title: "Place Test Trades",
+        description: "Practice with small amounts to familiarize yourself with the trading process.",
+        icon: "fas fa-chart-line",
+        completed: false
+      },
+      {
+        id: "journal-setup",
+        title: "Set Up Your Trading Journal",
+        description: "Learn how to effectively document your trades and track your progress.",
+        icon: "fas fa-book",
+        completed: false
+      },
+      {
+        id: "education-tour",
+        title: "Explore Education Resources",
+        description: "Discover the training materials, syllabus, and video content available to you.",
+        icon: "fas fa-graduation-cap",
+        completed: false
+      },
+      {
+        id: "completion",
+        title: "Onboarding Complete!",
+        description: "Congratulations! You're ready to start your trading journey with Griffin's Rise.",
+        icon: "fas fa-trophy",
+        completed: false
+      }
+    ];
+  },
+
+  setupEventListeners() {
+    // Onboarding modal controls
+    document.getElementById('closeOnboarding')?.addEventListener('click', () => this.hideOnboarding());
+    document.getElementById('skipOnboarding')?.addEventListener('click', () => this.skipOnboarding());
+    document.getElementById('nextOnboardingStep')?.addEventListener('click', () => this.nextStep());
+    document.getElementById('prevOnboardingStep')?.addEventListener('click', () => this.prevStep());
+    document.getElementById('startOnboardingBtn')?.addEventListener('click', () => this.showOnboarding());
+
+    // Email verification
+    document.getElementById('emailVerificationForm')?.addEventListener('submit', (e) => this.handleEmailVerification(e));
+    document.getElementById('skipEmailVerification')?.addEventListener('click', () => this.skipEmailVerification());
+
+    // 2FA setup
+    document.getElementById('twoFactorForm')?.addEventListener('submit', (e) => this.handle2FASetup(e));
+    document.getElementById('skip2FA')?.addEventListener('click', () => this.skip2FA());
+  },
+
+  showOnboarding() {
+    document.getElementById('onboardingModal').classList.remove('hidden');
+    this.currentStep = 0;
+    this.renderCurrentStep();
+    this.updateProgress();
+  },
+
+  hideOnboarding() {
+    document.getElementById('onboardingModal').classList.add('hidden');
+  },
+
+  skipOnboarding() {
+    localStorage.setItem('hasCompletedOnboarding', 'true');
+    this.hideOnboarding();
+  },
+
+  nextStep() {
+    if (this.currentStep < this.steps.length - 1) {
+      this.currentStep++;
+      this.renderCurrentStep();
+      this.updateProgress();
+    } else {
+      this.completeOnboarding();
+    }
+  },
+
+  prevStep() {
+    if (this.currentStep > 0) {
+      this.currentStep--;
+      this.renderCurrentStep();
+      this.updateProgress();
+    }
+  },
+
+  renderCurrentStep() {
+    const step = this.steps[this.currentStep];
+    const container = document.getElementById('onboardingSteps');
+    
+    container.innerHTML = `
+      <div class="bg-gray-700 rounded-lg p-6">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-4">
+            <i class="${step.icon} text-white"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-blue-100">${step.title}</h3>
+            <p class="text-sm text-gray-300">Step ${this.currentStep + 1} of ${this.steps.length}</p>
+          </div>
+        </div>
+        <p class="text-gray-300 mb-6">${step.description}</p>
+        ${this.getStepActions(step)}
+      </div>
+    `;
+
+    // Update navigation buttons
+    const prevBtn = document.getElementById('prevOnboardingStep');
+    const nextBtn = document.getElementById('nextOnboardingStep');
+    
+    if (this.currentStep === 0) {
+      prevBtn.classList.add('hidden');
+    } else {
+      prevBtn.classList.remove('hidden');
+    }
+
+    if (this.currentStep === this.steps.length - 1) {
+      nextBtn.textContent = 'Complete Onboarding';
+    } else {
+      nextBtn.textContent = 'Next Step';
+    }
+  },
+
+  getStepActions(step) {
+    switch (step.id) {
+      case 'welcome':
+        return `
+          <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-4 text-center">
+            <p class="text-white font-semibold">🎯 Your journey to trading mastery starts here!</p>
+          </div>
+        `;
+      
+      case 'email-verification':
+        return `
+          <button id="startEmailVerification" class="w-full py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition">
+            📧 Verify Your Email
+          </button>
+        `;
+      
+      case '2fa-setup':
+        return `
+          <button id="start2FASetup" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition">
+            🛡️ Set Up 2FA
+          </button>
+        `;
+
+      case 'cefi-security':
+      case 'defi-setup':
+      case 'test-trades':
+      case 'journal-setup':
+        return `
+          <div class="space-y-3">
+            <button class="view-guide-btn w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition" data-guide="${step.id}">
+              📚 Read Guide
+            </button>
+            <button class="mark-complete-btn w-full py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition" data-step="${step.id}">
+              ✅ Mark as Complete
+            </button>
+          </div>
+        `;
+
+      case 'education-tour':
+        return `
+          <button id="startEducationTour" class="w-full py-3 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg transition">
+            🎓 Explore Education Center
+          </button>
+        `;
+
+      case 'completion':
+        return `
+          <div class="text-center">
+            <div class="text-6xl mb-4">🏆</div>
+            <p class="text-lg text-green-400 font-semibold mb-4">🎉 Congratulations!</p>
+            <p class="text-gray-300">You've completed the onboarding process and are ready to start your trading journey!</p>
+          </div>
+        `;
+
+      default:
+        return '';
+    }
+  },
+
+  updateProgress() {
+    const completedSteps = this.currentStep + 1;
+    const totalSteps = this.steps.length;
+    const percentage = Math.round((completedSteps / totalSteps) * 100);
+    
+    document.getElementById('onboardingProgressText').textContent = `${completedSteps} / ${totalSteps} Steps Complete`;
+    document.getElementById('onboardingProgressBar').style.width = `${percentage}%`;
+  },
+
+  handleEmailVerification(e) {
+    e.preventDefault();
+    const email = document.getElementById('verificationEmail').value;
+    
+    // Simulate email verification
+    setTimeout(() => {
+      document.getElementById('emailVerificationModal').classList.add('hidden');
+      this.showMessage('Email verification sent! Check your inbox.', 'success');
+      this.completeStep('email-verification');
+    }, 1000);
+  },
+
+  skipEmailVerification() {
+    document.getElementById('emailVerificationModal').classList.add('hidden');
+    this.showMessage('Email verification skipped. You can verify later in settings.', 'info');
+  },
+
+  handle2FASetup(e) {
+    e.preventDefault();
+    const code = document.getElementById('twoFactorCode').value;
+    
+    if (code.length === 6) {
+      setTimeout(() => {
+        document.getElementById('twoFactorModal').classList.add('hidden');
+        this.showMessage('2FA enabled successfully! Your account is now more secure.', 'success');
+        this.completeStep('2fa-setup');
+      }, 1000);
+    }
+  },
+
+  skip2FA() {
+    document.getElementById('twoFactorModal').classList.add('hidden');
+    this.showMessage('2FA setup skipped. You can enable it later in security settings.', 'info');
+  },
+
+  completeStep(stepId) {
+    const step = this.steps.find(s => s.id === stepId);
+    if (step) {
+      step.completed = true;
+      this.saveProgress();
+    }
+  },
+
+  completeOnboarding() {
+    localStorage.setItem('hasCompletedOnboarding', 'true');
+    this.hideOnboarding();
+    this.showCelebration();
+  },
+
+  showCelebration() {
+    // Show a celebration modal or animation
+    const celebrationDiv = document.createElement('div');
+    celebrationDiv.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50';
+    celebrationDiv.innerHTML = `
+      <div class="bg-gray-800 rounded-xl p-8 text-center max-w-md">
+        <div class="text-6xl mb-4">🎉</div>
+        <h3 class="text-2xl font-bold text-green-400 mb-4">Welcome to Griffin's Rise!</h3>
+        <p class="text-gray-300 mb-6">You've completed the onboarding process. Your trading journey begins now!</p>
+        <button id="closeCelebration" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition">
+          Start Trading!
+        </button>
+      </div>
+    `;
+    
+    document.body.appendChild(celebrationDiv);
+    
+    document.getElementById('closeCelebration').addEventListener('click', () => {
+      document.body.removeChild(celebrationDiv);
+    });
+
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+      if (document.body.contains(celebrationDiv)) {
+        document.body.removeChild(celebrationDiv);
+      }
+    }, 5000);
+  },
+
+  saveProgress() {
+    localStorage.setItem('onboardingProgress', JSON.stringify(this.steps));
+  },
+
+  showMessage(message, type = 'info') {
+    const messageDiv = document.createElement('div');
+    const bgColor = type === 'success' ? 'bg-green-600' : type === 'error' ? 'bg-red-600' : 'bg-blue-600';
+    
+    messageDiv.className = `fixed top-4 right-4 ${bgColor} text-white px-6 py-3 rounded-lg shadow-lg z-50 transition-all`;
+    messageDiv.textContent = message;
+    
+    document.body.appendChild(messageDiv);
+    
+    setTimeout(() => {
+      if (document.body.contains(messageDiv)) {
+        document.body.removeChild(messageDiv);
+      }
+    }, 3000);
+  }
+};
+
+// Tooltip System
+const TooltipSystem = {
+  tooltips: {},
+
+  async init() {
+    // Load tooltip configuration
+    this.tooltips = await this.loadTooltips();
+    this.setupTooltips();
+  },
+
+  async loadTooltips() {
+    // In a real app, this would fetch from the JSON file
+    // For now, we'll inline essential tooltips
+    return {
+      "login-username": {
+        text: "Choose a unique username that you'll remember. This will be your identity in the Griffin's Rise community.",
+        position: "bottom"
+      },
+      "login-password": {
+        text: "Use a strong password with at least 8 characters, including numbers and symbols.",
+        position: "bottom"
+      },
+      "journal-date": {
+        text: "Enter the date when you opened this position. Use YYYY-MM-DD format for consistency.",
+        position: "top"
+      },
+      "journal-asset": {
+        text: "The trading pair or asset symbol (e.g., BTC/USD, ETH/USDT, AAPL).",
+        position: "top"
+      },
+      "journal-direction": {
+        text: "Select 'Long' if you're betting the price will go up, 'Short' if you're betting it will go down.",
+        position: "top"
+      },
+      "journal-thesis": {
+        text: "Write your reasoning for this trade. What analysis led you to this decision? This is crucial for learning.",
+        position: "top"
+      },
+      "journal-entry": {
+        text: "The price at which you entered the position. Be precise for accurate P&L calculations.",
+        position: "top"
+      },
+      "journal-sl": {
+        text: "Stop Loss: The price at which you'll cut your losses if the trade goes against you.",
+        position: "top"
+      },
+      "journal-tp": {
+        text: "Take Profit: The price at which you plan to close the position for a profit.",
+        position: "top"
+      },
+      "journal-emotion": {
+        text: "How did you feel during this trade? Tracking emotions helps identify psychological patterns.",
+        position: "top"
+      }
+    };
+  },
+
+  setupTooltips() {
+    Object.keys(this.tooltips).forEach(elementId => {
+      const element = document.getElementById(elementId);
+      if (element) {
+        this.addTooltip(element, this.tooltips[elementId]);
+      }
+    });
+
+    // Also add tooltips to nav buttons
+    this.addNavTooltips();
+  },
+
+  addNavTooltips() {
+    const navTooltips = {
+      'dashboardTab': 'View your trading statistics, performance charts, and analytics here.',
+      'educationTab': 'Access comprehensive trading education, guides, and video tutorials.',
+      'syllabusTab': 'Follow the structured learning path from beginner to advanced trading mastery.',
+      'journalTab': 'Log your trades, track performance, and analyze your trading patterns.'
+    };
+
+    Object.keys(navTooltips).forEach(elementId => {
+      const element = document.getElementById(elementId);
+      if (element) {
+        this.addTooltip(element, { text: navTooltips[elementId], position: 'bottom' });
+      }
+    });
+  },
+
+  addTooltip(element, config) {
+    const tooltip = document.createElement('div');
+    tooltip.className = 'tooltip absolute bg-gray-900 text-white text-sm px-3 py-2 rounded-lg shadow-lg z-50 hidden max-w-xs';
+    tooltip.textContent = config.text;
+    
+    // Add question mark indicator
+    const indicator = document.createElement('span');
+    indicator.className = 'tooltip-indicator ml-2 text-blue-400 cursor-help';
+    indicator.innerHTML = '<i class="fas fa-question-circle text-xs"></i>';
+    
+    // Position indicator next to element
+    if (element.tagName === 'INPUT' || element.tagName === 'SELECT' || element.tagName === 'TEXTAREA') {
+      // For form elements, add after the element
+      element.parentNode.style.position = 'relative';
+      element.parentNode.appendChild(indicator);
+    } else {
+      // For other elements, add inside if possible
+      element.style.position = 'relative';
+      element.appendChild(indicator);
+    }
+    
+    // Add tooltip to body
+    document.body.appendChild(tooltip);
+    
+    // Event listeners
+    indicator.addEventListener('mouseenter', (e) => this.showTooltip(e, tooltip, config.position));
+    indicator.addEventListener('mouseleave', () => this.hideTooltip(tooltip));
+    
+    // Touch support for mobile
+    indicator.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      this.showTooltip(e, tooltip, config.position);
+      setTimeout(() => this.hideTooltip(tooltip), 3000);
+    });
+  },
+
+  showTooltip(event, tooltip, position) {
+    const rect = event.target.getBoundingClientRect();
+    
+    tooltip.classList.remove('hidden');
+    
+    // Position tooltip
+    switch (position) {
+      case 'top':
+        tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
+        tooltip.style.top = rect.top - tooltip.offsetHeight - 8 + 'px';
+        break;
+      case 'bottom':
+        tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
+        tooltip.style.top = rect.bottom + 8 + 'px';
+        break;
+      case 'left':
+        tooltip.style.left = rect.left - tooltip.offsetWidth - 8 + 'px';
+        tooltip.style.top = rect.top + (rect.height / 2) - (tooltip.offsetHeight / 2) + 'px';
+        break;
+      case 'right':
+        tooltip.style.left = rect.right + 8 + 'px';
+        tooltip.style.top = rect.top + (rect.height / 2) - (tooltip.offsetHeight / 2) + 'px';
+        break;
+    }
+    
+    // Ensure tooltip stays within viewport
+    const tooltipRect = tooltip.getBoundingClientRect();
+    if (tooltipRect.right > window.innerWidth) {
+      tooltip.style.left = window.innerWidth - tooltip.offsetWidth - 10 + 'px';
+    }
+    if (tooltipRect.left < 0) {
+      tooltip.style.left = '10px';
+    }
+  },
+
+  hideTooltip(tooltip) {
+    tooltip.classList.add('hidden');
+  }
+};
+
+// Education System Enhancement
+const EducationSystem = {
+  guides: {},
+
+  init() {
+    this.setupEducationTabs();
+    this.setupGuideSystem();
+    this.loadGuides();
+  },
+
+  setupEducationTabs() {
+    const tabButtons = {
+      'guidesTabBtn': 'guidesTab',
+      'videosTabBtn': 'videosTab', 
+      'checklistsTabBtn': 'checklistsTab'
+    };
+
+    Object.keys(tabButtons).forEach(btnId => {
+      const btn = document.getElementById(btnId);
+      const tabId = tabButtons[btnId];
+      
+      if (btn) {
+        btn.addEventListener('click', () => this.showEducationTab(tabId, btnId));
+      }
+    });
+
+    // Show guides tab by default
+    this.showEducationTab('guidesTab', 'guidesTabBtn');
+  },
+
+  showEducationTab(tabId, activeBtnId) {
+    // Hide all tabs
+    document.querySelectorAll('.education-tab-content').forEach(tab => {
+      tab.classList.add('hidden');
+    });
+
+    // Show selected tab
+    const tab = document.getElementById(tabId);
+    if (tab) {
+      tab.classList.remove('hidden');
+    }
+
+    // Update button styles
+    document.querySelectorAll('[id$="TabBtn"]').forEach(btn => {
+      btn.classList.remove('bg-blue-600');
+      btn.classList.add('bg-gray-600');
+    });
+
+    const activeBtn = document.getElementById(activeBtnId);
+    if (activeBtn) {
+      activeBtn.classList.remove('bg-gray-600');
+      activeBtn.classList.add('bg-blue-600');
+    }
+  },
+
+  setupGuideSystem() {
+    // Guide modal controls
+    document.getElementById('closeGuide')?.addEventListener('click', () => this.hideGuide());
+
+    // View guide buttons
+    document.querySelectorAll('.view-guide-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const guideId = e.target.dataset.guide;
+        this.showGuide(guideId);
+      });
+    });
+
+    // Mark complete buttons (for onboarding)
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('mark-complete-btn')) {
+        const stepId = e.target.dataset.step;
+        this.markStepComplete(stepId);
+      }
+    });
+
+    // Email verification and 2FA buttons in onboarding
+    document.addEventListener('click', (e) => {
+      if (e.target.id === 'startEmailVerification') {
+        document.getElementById('emailVerificationModal').classList.remove('hidden');
+      }
+      if (e.target.id === 'start2FASetup') {
+        document.getElementById('twoFactorModal').classList.remove('hidden');
+      }
+      if (e.target.id === 'startEducationTour') {
+        showTab('education');
+        OnboardingSystem.hideOnboarding();
+      }
+    });
+  },
+
+  loadGuides() {
+    // In a real app, these would be loaded from the markdown files
+    this.guides = {
+      'cefi-security': {
+        title: 'CeFi Security Guide',
+        content: `
+          <h1>CeFi Security Guide</h1>
+          <h2>Securing Your Centralized Exchange Accounts</h2>
+          <p>Centralized exchanges (CeFi) like Binance, Coinbase, and Kraken are popular entry points into cryptocurrency trading. However, they require careful security setup to protect your funds.</p>
+          
+          <h3>Essential Security Steps</h3>
+          
+          <h4>1. Enable Two-Factor Authentication (2FA)</h4>
+          <ul>
+            <li><strong>Why:</strong> 2FA is your first line of defense against unauthorized access</li>
+            <li><strong>How:</strong> Download Google Authenticator or Authy, go to Security Settings, scan QR code, save backup codes</li>
+          </ul>
+          
+          <h4>2. Set Up API Keys Properly</h4>
+          <ul>
+            <li><strong>Trading-Only Permissions:</strong> Never enable withdrawal permissions on API keys</li>
+            <li><strong>IP Whitelisting:</strong> Restrict API access to specific IP addresses</li>
+            <li><strong>Regular Rotation:</strong> Change API keys every 3-6 months</li>
+          </ul>
+          
+          <h4>3. Configure Withdrawal Settings</h4>
+          <ul>
+            <li><strong>Withdrawal Limits:</strong> Set daily/monthly limits appropriate for your trading</li>
+            <li><strong>Whitelisted Addresses:</strong> Only allow withdrawals to pre-approved wallet addresses</li>
+            <li><strong>Email Confirmations:</strong> Enable email verification for all withdrawals</li>
+          </ul>
+          
+          <div class="bg-yellow-900 border-l-4 border-yellow-400 p-4 my-4">
+            <p><strong>Security Tip:</strong> Never use SMS for 2FA as it can be hijacked. Always use authenticator apps.</p>
+          </div>
+        `
+      },
+      'defi-setup': {
+        title: 'DeFi Wallets Setup Guide',
+        content: `
+          <h1>DeFi Wallets Setup Guide</h1>
+          <h2>Setting Up Your Decentralized Finance Wallets</h2>
+          <p>DeFi wallets give you complete control over your cryptocurrency, but with great power comes great responsibility.</p>
+          
+          <h3>MetaMask Setup (Recommended for Beginners)</h3>
+          
+          <h4>Installation</h4>
+          <ol>
+            <li>Visit metamask.io (verify the URL carefully)</li>
+            <li>Download the browser extension</li>
+            <li>Create a new wallet</li>
+            <li><strong>CRITICAL:</strong> Write down your 12-word recovery phrase</li>
+          </ol>
+          
+          <h4>Security Setup</h4>
+          <ul>
+            <li><strong>Recovery Phrase:</strong> Write it down on paper, never store digitally</li>
+            <li><strong>Multiple Copies:</strong> Store in 2-3 separate secure locations</li>
+            <li><strong>Test Recovery:</strong> Practice wallet recovery before funding</li>
+            <li><strong>Strong Password:</strong> Use a unique password for the wallet</li>
+          </ul>
+          
+          <div class="bg-red-900 border-l-4 border-red-400 p-4 my-4">
+            <p><strong>CRITICAL WARNING:</strong> Your recovery phrase IS your wallet. Lose it and your funds are gone forever. No customer service can help you.</p>
+          </div>
+          
+          <h3>Hardware Wallet Integration</h3>
+          <p>For maximum security, connect MetaMask to a hardware wallet like Ledger or Trezor.</p>
+        `
+      },
+      'test-trades': {
+        title: 'Test Trading Guide',
+        content: `
+          <h1>Test Trading Guide</h1>
+          <h2>Placing Your First Test Trades</h2>
+          <p>Before committing significant capital, it's crucial to practice with small amounts. This guide walks you through placing safe test trades.</p>
+          
+          <h3>Why Test Trades Matter</h3>
+          <ul>
+            <li>Understand platform interfaces</li>
+            <li>Practice order types and execution</li>
+            <li>Test your emotional reactions</li>
+            <li>Verify your trading setup</li>
+            <li>Build confidence before scaling up</li>
+          </ul>
+          
+          <h3>Test Trade #1: Simple Long Position</h3>
+          
+          <h4>Setup</h4>
+          <ol>
+            <li>Choose a liquid trading pair (BTC/USD, ETH/USD)</li>
+            <li>Start with a small amount ($10-20)</li>
+            <li>Use a limit order slightly below current market price</li>
+            <li>Set stop loss 2-3% below entry</li>
+            <li>Set take profit 2-3% above entry</li>
+          </ol>
+          
+          <h4>What to Document</h4>
+          <ul>
+            <li>Entry and exit prices</li>
+            <li>Time in position</li>
+            <li>Emotions felt during the trade</li>
+            <li>What you learned</li>
+            <li>Platform-specific notes</li>
+          </ul>
+          
+          <div class="bg-blue-900 border-l-4 border-blue-400 p-4 my-4">
+            <p><strong>Remember:</strong> The goal of test trades isn't to make money—it's to learn and build confidence.</p>
+          </div>
+        `
+      },
+      'journal-setup': {
+        title: 'Trading Journal Basics',
+        content: `
+          <h1>Trading Journal Basics</h1>
+          <h2>Master the Art of Trading Documentation</h2>
+          <p>A trading journal is your most powerful tool for improvement. It transforms random trades into data-driven insights.</p>
+          
+          <h3>Essential Journal Components</h3>
+          
+          <h4>Pre-Trade Planning</h4>
+          <ul>
+            <li><strong>Setup/Thesis:</strong> Why are you making this trade?</li>
+            <li><strong>Entry Strategy:</strong> Planned entry price and method</li>
+            <li><strong>Exit Strategy:</strong> Both profit target and stop loss</li>
+            <li><strong>Risk Assessment:</strong> Position size and risk percentage</li>
+            <li><strong>Market Context:</strong> Current trends and conditions</li>
+          </ul>
+          
+          <h4>Trade Execution</h4>
+          <ul>
+            <li><strong>Actual Entry:</strong> Real price vs. planned price</li>
+            <li><strong>Emotions:</strong> How did you feel entering?</li>
+            <li><strong>Market Behavior:</strong> Did price act as expected?</li>
+            <li><strong>Management Decisions:</strong> Any changes to original plan</li>
+            <li><strong>Exit Timing:</strong> Why you closed when you did</li>
+          </ul>
+          
+          <h4>Post-Trade Analysis</h4>
+          <ul>
+            <li><strong>Outcome:</strong> Profit/loss amount and percentage</li>
+            <li><strong>Execution Quality:</strong> How well did you stick to plan?</li>
+            <li><strong>Market Analysis:</strong> Was your thesis correct?</li>
+            <li><strong>Lessons Learned:</strong> What would you do differently?</li>
+            <li><strong>Future Improvements:</strong> Specific action items</li>
+          </ul>
+          
+          <div class="bg-green-900 border-l-4 border-green-400 p-4 my-4">
+            <p><strong>Pro Tip:</strong> Journaling can improve your win rate by 15-30% according to professional traders.</p>
+          </div>
+        `
+      }
+    };
+  },
+
+  showGuide(guideId) {
+    const guide = this.guides[guideId];
+    if (!guide) return;
+
+    document.getElementById('guideTitle').textContent = guide.title;
+    document.getElementById('guideContent').innerHTML = guide.content;
+    document.getElementById('guideModal').classList.remove('hidden');
+  },
+
+  hideGuide() {
+    document.getElementById('guideModal').classList.add('hidden');
+  },
+
+  markStepComplete(stepId) {
+    OnboardingSystem.completeStep(stepId);
+    OnboardingSystem.showMessage(`${stepId} step completed!`, 'success');
+    
+    // Auto-advance to next step after a delay
+    setTimeout(() => {
+      OnboardingSystem.nextStep();
+    }, 1500);
+  }
+};
+
+// Initialize systems when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  OnboardingSystem.init();
+  TooltipSystem.init();
+  EducationSystem.init();
 });
 </script>
 <!-- Training Manual -->
@@ -2302,6 +3398,17 @@ function updateNavForLogin() {
     if (loginTab) loginTab.classList.add("hidden");
     if (logoutBtn) logoutBtn.classList.remove("hidden");
     showTab("education");
+    
+    // Check if this is a first-time login and trigger onboarding
+    const hasCompletedOnboarding = localStorage.getItem('hasCompletedOnboarding');
+    if (!hasCompletedOnboarding) {
+      // Slight delay to ensure UI is ready
+      setTimeout(() => {
+        if (typeof OnboardingSystem !== 'undefined') {
+          OnboardingSystem.showOnboarding();
+        }
+      }, 1000);
+    }
   }
 }
 function showTab(tab) {
