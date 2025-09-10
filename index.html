@@ -407,10 +407,35 @@
       color: #facc15 !important;
       border-color: #facc15 !important;
     }
-    input[type="date"], input[type="number"] { color-scheme: dark; }
+    /* Enhanced color scheme support with fallback */
+    input[type="date"], input[type="number"] { 
+      color-scheme: dark;
+      /* Fallback for browsers that don't support color-scheme */
+      background-color: #232946;
+      color: #dbeafe;
+      border: 1px solid #1d4ed8;
+    }
     select option { background: #232946; color: #dbeafe; }
     textarea { min-height: 2.5rem; resize: vertical;}
     ::placeholder { color: #b3c2e0 !important; opacity: 1 !important;}
+
+    /* Critical layout styles moved from inline for better performance */
+    .profile-image { min-width: 120px; }
+    .brand-title { font-family: Montserrat, sans-serif; }
+    .pro-badge { 
+      background: linear-gradient(90deg, #f59e42 0%, #2563eb 100%);
+      color: #fff;
+    }
+    .journal-section { max-width: 100rem; }
+    .journal-pnl-readonly { 
+      background: #28304a !important; 
+      opacity: 0.7; 
+    }
+    .table-container { 
+      max-width: 80rem; 
+      min-width: 340px; 
+      overflow-x: auto; 
+    }
 
     /* Journal Table Styles */
     table#journal-table th, table#journal-table td {
@@ -491,12 +516,12 @@
     <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-2">
       <div class="flex items-center space-x-5">
         <img src="/public/griffin-rise-log.png" alt="Griffin's Rise Trading Journal Logo"
-          class="h-20 w-20 rounded-full shadow-xl ring-4 ring-blue-500 ring-opacity-60 bg-white object-contain" style="min-width:120px;" />
+          class="h-20 w-20 rounded-full shadow-xl ring-4 ring-blue-500 ring-opacity-60 bg-white object-contain profile-image" />
         <div>
-          <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-blue-100" style="font-family:Montserrat,sans-serif">
+          <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-blue-100 brand-title">
             Griffin's Rise: <span class="text-yellow-400">Advanced Trading Journal</span>
           </h1>
-          <span class="badge mt-2 ml-1 align-middle text-base" style="background:linear-gradient(90deg,#f59e42 0%,#2563eb 100%);color:#fff;">PRO EDITION</span>
+          <span class="badge mt-2 ml-1 align-middle text-base pro-badge">PRO EDITION</span>
         </div>
       </div>
       <nav class="flex flex-wrap gap-1 md:gap-2 items-center mt-4 md:mt-0">
@@ -2278,6 +2303,61 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
 
+    <!-- Welcome Overview Video Section -->
+    <div class="bg-gradient-to-r from-green-600 to-teal-600 rounded-xl p-6 mb-8">
+      <div class="text-center">
+        <h3 class="text-2xl font-bold text-white mb-4">🎬 Getting Started Overview</h3>
+        <div class="bg-gray-800 rounded-lg p-6">
+          <div class="text-4xl mb-3">🎥</div>
+          <h4 class="text-xl font-semibold mb-4 text-green-300">Welcome to Griffin's Rise Trading Program</h4>
+          
+          <!-- Enhanced Video Embed Placeholder -->
+          <div class="bg-gray-900 rounded-lg p-4 mb-4 border-2 border-dashed border-gray-600">
+            <p class="text-gray-400 mb-2">📹 Video Embed Placeholder</p>
+            <div class="bg-black rounded aspect-video flex items-center justify-center">
+              <div class="text-center text-gray-500">
+                <div class="text-6xl mb-2">▶️</div>
+                <p>Replace this div with your video embed code</p>
+                <p class="text-sm">&lt;iframe src="your-video-url"&gt;&lt;/iframe&gt;</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Video Generation Instructions -->
+          <div class="bg-gray-700 rounded p-4 text-left text-sm space-y-2 mb-4">
+            <p class="text-green-300 font-semibold">🤖 AI Video Generation Script:</p>
+            <div class="space-y-2">
+              <p><strong>For Gemini/HeyGen/Synthesia/D-ID:</strong></p>
+              <p><strong>Script:</strong> "Welcome to Griffin's Rise, the comprehensive trading program that bridges traditional and decentralized finance. In this course, you'll master both CeFi platforms like MEXC and DeFi protocols like Hyperliquid. We'll guide you through account setup, security best practices, and real trading strategies. By the end, you'll confidently execute trades on both centralized exchanges and decentralized platforms. Let's begin your journey to trading mastery."</p>
+              <p><strong>Duration:</strong> 1-2 minutes</p>
+              <p><strong>Tone:</strong> Confident, welcoming, professional</p>
+              <p><strong>Visual Style:</strong> Clean background, professional presenter</p>
+              <p><strong>Call-to-Action:</strong> "Ready to start? Let's dive into your first step."</p>
+            </div>
+          </div>
+
+          <!-- Motivational Elements -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+            <div class="bg-green-700/50 rounded-lg p-3">
+              <div class="text-2xl mb-1">🎯</div>
+              <div class="text-sm font-semibold">Clear Goals</div>
+              <div class="text-xs text-green-200">Step-by-step progression</div>
+            </div>
+            <div class="bg-blue-700/50 rounded-lg p-3">
+              <div class="text-2xl mb-1">🛡️</div>
+              <div class="text-sm font-semibold">Security First</div>
+              <div class="text-xs text-blue-200">Best practices included</div>
+            </div>
+            <div class="bg-purple-700/50 rounded-lg p-3">
+              <div class="text-2xl mb-1">📈</div>
+              <div class="text-sm font-semibold">Real Trading</div>
+              <div class="text-xs text-purple-200">Practical experience</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Progress Tracker -->
     <div class="bg-gray-800 rounded-xl p-6 mb-8">
       <h3 class="text-2xl font-bold mb-4 text-blue-300 flex items-center gap-2">
@@ -2341,28 +2421,84 @@ document.addEventListener('DOMContentLoaded', function() {
               <p class="text-gray-300 mb-3">Create and secure your MEXC exchange account</p>
               <button class="start-step-btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">Start Step</button>
               
-              <!-- Video Placeholder -->
+              <!-- Enhanced Video Placeholder -->
               <div class="video-placeholder bg-gray-700 rounded-lg p-6 mt-4 hidden step-detail">
                 <div class="text-center">
                   <div class="text-4xl mb-3">🎥</div>
-                  <h5 class="text-lg font-semibold mb-2">Video: MEXC Account Setup</h5>
-                  <p class="text-gray-400 mb-4">AI Video Generation Instructions:</p>
-                  <div class="bg-gray-800 rounded p-4 text-left text-sm space-y-2">
-                    <p><strong>For Gemini/HeyGen/Synthesia:</strong></p>
-                    <p>• Script: "Welcome to MEXC registration. Go to mexc.com, click Sign Up, enter email and strong password, verify email, enable 2FA with Google Authenticator."</p>
-                    <p>• Duration: 2-3 minutes</p>
-                    <p>• Screen recording: Show actual signup process</p>
-                    <p>• Voice: Professional, encouraging tone</p>
-                  </div>
-                  <div class="mt-4 p-4 bg-blue-900/50 rounded">
-                    <h6 class="font-semibold mb-2">Step-by-step checklist:</h6>
-                    <div class="text-left space-y-1">
-                      <label class="flex items-center gap-2"><input type="checkbox" class="step-checkbox"> Visit mexc.com</label>
-                      <label class="flex items-center gap-2"><input type="checkbox" class="step-checkbox"> Click "Sign Up"</label>
-                      <label class="flex items-center gap-2"><input type="checkbox" class="step-checkbox"> Enter email and password</label>
-                      <label class="flex items-center gap-2"><input type="checkbox" class="step-checkbox"> Verify email</label>
-                      <label class="flex items-center gap-2"><input type="checkbox" class="step-checkbox"> Enable 2FA</label>
+                  <h5 class="text-lg font-semibold mb-2">Video: MEXC Account Setup & Security</h5>
+                  
+                  <!-- Video Embed Placeholder -->
+                  <div class="bg-gray-900 rounded-lg p-4 mb-4 border-2 border-dashed border-gray-600">
+                    <p class="text-gray-400 mb-2">📹 CeFi Video Embed Here</p>
+                    <div class="bg-black rounded aspect-video flex items-center justify-center">
+                      <div class="text-center text-gray-500">
+                        <div class="text-4xl mb-2">▶️</div>
+                        <p class="text-sm">MEXC Setup Tutorial</p>
+                      </div>
                     </div>
+                  </div>
+
+                  <p class="text-gray-400 mb-4">🤖 Enhanced AI Video Generation Instructions:</p>
+                  <div class="bg-gray-800 rounded p-4 text-left text-sm space-y-3">
+                    <div class="border-l-4 border-blue-500 pl-3">
+                      <p class="text-blue-300 font-semibold">For Gemini/HeyGen/Synthesia/D-ID:</p>
+                      <p><strong>Complete Script:</strong></p>
+                      <p>"Welcome to MEXC account creation. MEXC is a leading centralized exchange perfect for beginners. First, visit mexc.com and click the bright 'Sign Up' button. Enter a strong email address and create a complex password with uppercase, lowercase, numbers, and symbols. After email verification, immediately enable Two-Factor Authentication using Google Authenticator for maximum security. Complete basic KYC verification to unlock full trading features. Remember: never share your login credentials, always use 2FA, and start with small amounts. You're now ready to explore CeFi trading safely."</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+                      <div>
+                        <p class="text-yellow-300 font-semibold">📋 Production Notes:</p>
+                        <p>• Duration: 3-4 minutes</p>
+                        <p>• Tone: Encouraging, security-focused</p>
+                        <p>• Pace: Moderate (allow time to follow)</p>
+                        <p>• Include screen recording</p>
+                      </div>
+                      <div>
+                        <p class="text-green-300 font-semibold">🎯 Key Points to Emphasize:</p>
+                        <p>• Security is paramount</p>
+                        <p>• 2FA is mandatory</p>
+                        <p>• Start small, learn first</p>
+                        <p>• MEXC = beginner-friendly</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Enhanced Interactive Checklist -->
+                  <div class="mt-4 p-4 bg-blue-900/50 rounded">
+                    <h6 class="font-semibold mb-3 flex items-center gap-2">
+                      <span class="text-xl">✅</span> Interactive Step-by-step Checklist:
+                    </h6>
+                    <div class="text-left space-y-2">
+                      <label class="flex items-center gap-3 p-2 hover:bg-blue-800/30 rounded transition">
+                        <input type="checkbox" class="step-checkbox w-4 h-4"> 
+                        <span>🌐 Visit <a href="https://www.mexc.com" target="_blank" rel="noopener" class="text-blue-300 hover:text-blue-200 underline">mexc.com</a></span>
+                      </label>
+                      <label class="flex items-center gap-3 p-2 hover:bg-blue-800/30 rounded transition">
+                        <input type="checkbox" class="step-checkbox w-4 h-4"> 
+                        <span>📝 Click "Sign Up" button</span>
+                      </label>
+                      <label class="flex items-center gap-3 p-2 hover:bg-blue-800/30 rounded transition">
+                        <input type="checkbox" class="step-checkbox w-4 h-4"> 
+                        <span>🔐 Create strong email + password combo</span>
+                      </label>
+                      <label class="flex items-center gap-3 p-2 hover:bg-blue-800/30 rounded transition">
+                        <input type="checkbox" class="step-checkbox w-4 h-4"> 
+                        <span>📧 Verify email address</span>
+                      </label>
+                      <label class="flex items-center gap-3 p-2 hover:bg-blue-800/30 rounded transition">
+                        <input type="checkbox" class="step-checkbox w-4 h-4"> 
+                        <span>🛡️ Enable Google Authenticator 2FA</span>
+                      </label>
+                      <label class="flex items-center gap-3 p-2 hover:bg-blue-800/30 rounded transition">
+                        <input type="checkbox" class="step-checkbox w-4 h-4"> 
+                        <span>🆔 Complete basic KYC verification</span>
+                      </label>
+                    </div>
+                    <!-- Progress indicator -->
+                    <div class="mt-3 bg-gray-700 rounded-full h-2">
+                      <div class="mexc-step-progress bg-blue-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-1">Complete all steps to unlock step 2</p>
                   </div>
                 </div>
               </div>
@@ -2416,7 +2552,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <span class="text-3xl">🔗</span>
           <div>
             <h3 class="text-2xl font-bold text-purple-300">DeFi Onboarding</h3>
-            <p class="text-purple-200">Decentralized Finance Setup</p>
+            <p class="text-purple-200">Decentralized Finance (Hyperliquid Focus)</p>
           </div>
         </div>
         
@@ -2432,18 +2568,106 @@ document.addEventListener('DOMContentLoaded', function() {
               <p class="text-gray-300 mb-3">Create and secure your MetaMask wallet</p>
               <button class="start-step-btn bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded transition">Start Step</button>
               
-              <!-- Video Placeholder -->
+              <!-- Enhanced DeFi Video Placeholder -->
               <div class="video-placeholder bg-gray-700 rounded-lg p-6 mt-4 hidden step-detail">
                 <div class="text-center">
                   <div class="text-4xl mb-3">🎥</div>
-                  <h5 class="text-lg font-semibold mb-2">Video: MetaMask Wallet Setup</h5>
-                  <p class="text-gray-400 mb-4">AI Video Generation Instructions:</p>
-                  <div class="bg-gray-800 rounded p-4 text-left text-sm space-y-2">
-                    <p><strong>For Gemini/HeyGen/Synthesia:</strong></p>
-                    <p>• Script: "Install MetaMask extension, create new wallet, write down seed phrase securely, set strong password, understand wallet security basics."</p>
-                    <p>• Duration: 3-4 minutes</p>
-                    <p>• Screen recording: Show MetaMask installation and setup</p>
-                    <p>• Voice: Security-focused, cautious tone</p>
+                  <h5 class="text-lg font-semibold mb-2">Video: Wallet Setup for DeFi Trading</h5>
+                  
+                  <!-- Video Embed Placeholder -->
+                  <div class="bg-gray-900 rounded-lg p-4 mb-4 border-2 border-dashed border-gray-600">
+                    <p class="text-gray-400 mb-2">📹 DeFi Wallet Setup Video</p>
+                    <div class="bg-black rounded aspect-video flex items-center justify-center">
+                      <div class="text-center text-gray-500">
+                        <div class="text-4xl mb-2">▶️</div>
+                        <p class="text-sm">MetaMask & DeFi Setup</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p class="text-gray-400 mb-4">🤖 Comprehensive AI Video Generation Instructions:</p>
+                  <div class="bg-gray-800 rounded p-4 text-left text-sm space-y-3">
+                    <div class="border-l-4 border-purple-500 pl-3">
+                      <p class="text-purple-300 font-semibold">For Gemini/HeyGen/Synthesia/D-ID:</p>
+                      <p><strong>Complete Script:</strong></p>
+                      <p>"Welcome to DeFi wallet setup. We'll create a MetaMask wallet to access Hyperliquid, the leading decentralized perps exchange. First, install the MetaMask browser extension from metamask.io. Click 'Create a wallet' and set a strong password. CRITICAL: Write down your 12-word seed phrase on paper - never save it digitally. This phrase is your wallet backup. Next, we'll connect to Arbitrum network for Hyperliquid. Go to Hyperliquid.xyz, connect your wallet, and you'll see the trading interface. Remember: your wallet is your responsibility in DeFi. No customer service can recover lost seed phrases. Always double-check URLs and start with small amounts. You now have access to advanced DeFi perpetual trading."</p>
+                    </div>
+                    
+                    <!-- Hyperliquid-specific instructions -->
+                    <div class="bg-purple-900/30 rounded p-3 border border-purple-600">
+                      <p class="text-purple-300 font-semibold">🚀 Hyperliquid-Specific Notes:</p>
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                        <div>
+                          <p class="text-yellow-300 text-xs font-semibold">📋 Production Details:</p>
+                          <p class="text-xs">• Duration: 4-5 minutes</p>
+                          <p class="text-xs">• Tone: Security-first, confident</p>
+                          <p class="text-xs">• Show actual Hyperliquid interface</p>
+                          <p class="text-xs">• Emphasize: seed phrase security</p>
+                        </div>
+                        <div>
+                          <p class="text-blue-300 text-xs font-semibold">🎯 Key Hyperliquid Features:</p>
+                          <p class="text-xs">• Native perps trading</p>
+                          <p class="text-xs">• No KYC required</p>
+                          <p class="text-xs">• Low fees</p>
+                          <p class="text-xs">• Advanced order types</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Enhanced Interactive Checklist with Hyperliquid Focus -->
+                  <div class="mt-4 p-4 bg-purple-900/50 rounded">
+                    <h6 class="font-semibold mb-3 flex items-center gap-2">
+                      <span class="text-xl">🔗</span> DeFi Wallet Setup Checklist:
+                    </h6>
+                    <div class="text-left space-y-2">
+                      <label class="flex items-center gap-3 p-2 hover:bg-purple-800/30 rounded transition">
+                        <input type="checkbox" class="step-checkbox w-4 h-4"> 
+                        <span>🦊 Install MetaMask from <a href="https://metamask.io" target="_blank" rel="noopener" class="text-purple-300 hover:text-purple-200 underline">metamask.io</a></span>
+                      </label>
+                      <label class="flex items-center gap-3 p-2 hover:bg-purple-800/30 rounded transition">
+                        <input type="checkbox" class="step-checkbox w-4 h-4"> 
+                        <span>🆕 Create new wallet with strong password</span>
+                      </label>
+                      <label class="flex items-center gap-3 p-2 hover:bg-purple-800/30 rounded transition">
+                        <input type="checkbox" class="step-checkbox w-4 h-4"> 
+                        <span>📝 Write down 12-word seed phrase SECURELY</span>
+                      </label>
+                      <label class="flex items-center gap-3 p-2 hover:bg-purple-800/30 rounded transition">
+                        <input type="checkbox" class="step-checkbox w-4 h-4"> 
+                        <span>🔗 Connect to Arbitrum network</span>
+                      </label>
+                      <label class="flex items-center gap-3 p-2 hover:bg-purple-800/30 rounded transition">
+                        <input type="checkbox" class="step-checkbox w-4 h-4"> 
+                        <span>🚀 Visit <a href="https://app.hyperliquid.xyz" target="_blank" rel="noopener" class="text-purple-300 hover:text-purple-200 underline">Hyperliquid.xyz</a> and connect wallet</span>
+                      </label>
+                      <label class="flex items-center gap-3 p-2 hover:bg-purple-800/30 rounded transition">
+                        <input type="checkbox" class="step-checkbox w-4 h-4"> 
+                        <span>✅ Verify trading interface loads correctly</span>
+                      </label>
+                    </div>
+                    <!-- Progress indicator -->
+                    <div class="mt-3 bg-gray-700 rounded-full h-2">
+                      <div class="defi-step-progress bg-purple-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-1">Complete all steps to unlock Hyperliquid trading</p>
+                  </div>
+                  
+                  <!-- Hyperliquid Advantage Box -->
+                  <div class="mt-4 p-4 bg-gradient-to-r from-purple-800/50 to-blue-800/50 rounded border border-purple-500">
+                    <h6 class="font-semibold mb-2 text-purple-300">🏆 Why Hyperliquid for DeFi Trading?</h6>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                      <div>
+                        <p>✅ Native perpetual contracts</p>
+                        <p>✅ No KYC requirements</p>
+                        <p>✅ Ultra-low fees</p>
+                      </div>
+                      <div>
+                        <p>✅ High liquidity</p>
+                        <p>✅ Advanced order types</p>
+                        <p>✅ On-chain transparency</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -2453,11 +2677,14 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="defi-step bg-gray-800 rounded-lg p-4 border-l-4 border-gray-500" data-step="2">
             <div class="flex items-center gap-3 mb-3">
               <div class="step-indicator w-8 h-8 rounded-full bg-gray-500 text-white flex items-center justify-center font-bold">2</div>
-              <h4 class="text-lg font-semibold text-gray-400">Network Configuration</h4>
+              <h4 class="text-lg font-semibold text-gray-400">Hyperliquid Connection</h4>
               <span class="step-status ml-auto text-2xl">🔒</span>
             </div>
             <div class="step-content ml-11">
-              <p class="text-gray-400 mb-3">Add custom networks (Arbitrum, Polygon, etc.)</p>
+              <p class="text-gray-400 mb-3">Connect MetaMask to Hyperliquid and verify setup</p>
+              <div class="tooltip-hint text-sm text-purple-300 bg-purple-900/30 p-2 rounded mb-3">
+                💡 Tip: Hyperliquid runs on Arbitrum - make sure you have ETH for gas fees
+              </div>
               <button class="start-step-btn bg-gray-600 text-white px-4 py-2 rounded transition cursor-not-allowed" disabled>Complete Step 1 First</button>
             </div>
           </div>
@@ -2465,11 +2692,14 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="defi-step bg-gray-800 rounded-lg p-4 border-l-4 border-gray-500" data-step="3">
             <div class="flex items-center gap-3 mb-3">
               <div class="step-indicator w-8 h-8 rounded-full bg-gray-500 text-white flex items-center justify-center font-bold">3</div>
-              <h4 class="text-lg font-semibold text-gray-400">DeFi Platform Access</h4>
+              <h4 class="text-lg font-semibold text-gray-400">Fund Your Wallet</h4>
               <span class="step-status ml-auto text-2xl">🔒</span>
             </div>
             <div class="step-content ml-11">
-              <p class="text-gray-400 mb-3">Connect to Uniswap, PancakeSwap, and other DEXs</p>
+              <p class="text-gray-400 mb-3">Bridge funds to Arbitrum for Hyperliquid trading</p>
+              <div class="tooltip-hint text-sm text-yellow-300 bg-yellow-900/30 p-2 rounded mb-3">
+                ⚠️ Start with small amounts ($10-50) while learning
+              </div>
               <button class="start-step-btn bg-gray-600 text-white px-4 py-2 rounded transition cursor-not-allowed" disabled>Complete Previous Steps</button>
             </div>
           </div>
@@ -2477,11 +2707,14 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="defi-step bg-gray-800 rounded-lg p-4 border-l-4 border-gray-500" data-step="4">
             <div class="flex items-center gap-3 mb-3">
               <div class="step-indicator w-8 h-8 rounded-full bg-gray-500 text-white flex items-center justify-center font-bold">4</div>
-              <h4 class="text-lg font-semibold text-gray-400">First DeFi Trade</h4>
+              <h4 class="text-lg font-semibold text-gray-400">First Hyperliquid Trade</h4>
               <span class="step-status ml-auto text-2xl">🔒</span>
             </div>
             <div class="step-content ml-11">
-              <p class="text-gray-400 mb-3">Execute your first decentralized trade</p>
+              <p class="text-gray-400 mb-3">Execute your first perps trade on Hyperliquid</p>
+              <div class="tooltip-hint text-sm text-green-300 bg-green-900/30 p-2 rounded mb-3">
+                🎯 Practice with small position sizes first
+              </div>
               <button class="start-step-btn bg-gray-600 text-white px-4 py-2 rounded transition cursor-not-allowed" disabled>Complete Previous Steps</button>
             </div>
           </div>
@@ -2525,6 +2758,79 @@ document.addEventListener('DOMContentLoaded', function() {
 </footer>
 <script>
 /* ========= LOGIN & NAVIGATION JS ========= */
+
+/*
+ * DEVELOPER NOTES: EXTENSION & GAMIFICATION OPPORTUNITIES
+ * 
+ * === ONBOARDING GAMIFICATION EXTENSIONS ===
+ * 1. ACHIEVEMENT SYSTEM:
+ *    - Add XP points for each completed step (Step 1: 100 XP, Step 2: 150 XP, etc.)
+ *    - Create badge collection system with custom icons
+ *    - Implement level progression (Beginner → Intermediate → Advanced → Expert)
+ *    - Add completion time tracking and speed achievement badges
+ * 
+ * 2. PROGRESS ANIMATIONS:
+ *    - Add confetti animations when steps are completed
+ *    - Implement smooth progress bar animations with sound effects
+ *    - Create pulse effects on active steps
+ *    - Add celebration modals with personalized messages
+ * 
+ * 3. SOCIAL FEATURES:
+ *    - Leaderboard for fastest completion times
+ *    - Peer progress sharing and comparison
+ *    - Community challenges and group onboarding
+ *    - Mentorship system connecting advanced users with beginners
+ * 
+ * === ADVANCED ONBOARDING FEATURES ===
+ * 4. PERSONALIZATION:
+ *    - Skill assessment quiz to customize learning path
+ *    - Adaptive difficulty based on user performance
+ *    - Personalized video recommendations
+ *    - Custom reminder systems and notification preferences
+ * 
+ * 5. INTEGRATION OPPORTUNITIES:
+ *    - Real-time API connections to MEXC and Hyperliquid for live data
+ *    - Automated verification of completed actions (wallet connections, trades)
+ *    - Calendar integration for scheduling practice sessions
+ *    - Mobile app companion for progress tracking
+ * 
+ * 6. ANALYTICS & OPTIMIZATION:
+ *    - Heat maps showing where users get stuck
+ *    - A/B testing for different onboarding flows
+ *    - Completion rate tracking per step
+ *    - User feedback collection and iteration
+ * 
+ * === TECHNICAL IMPLEMENTATION NOTES ===
+ * 7. STATE MANAGEMENT:
+ *    - Current implementation uses localStorage - consider upgrading to IndexedDB
+ *    - Add cloud sync for cross-device progress tracking
+ *    - Implement offline-first architecture with sync capabilities
+ * 
+ * 8. ACCESSIBILITY & INTERNATIONALIZATION:
+ *    - Add ARIA labels and keyboard navigation support
+ *    - Implement multi-language support for global users
+ *    - Add screen reader compatibility
+ *    - Consider users with disabilities in gamification design
+ * 
+ * 9. SECURITY ENHANCEMENTS:
+ *    - Add secure credential storage recommendations
+ *    - Implement phishing detection warnings
+ *    - Add security score tracking based on user actions
+ *    - Create security knowledge quizzes
+ * 
+ * === MONETIZATION OPPORTUNITIES ===
+ * 10. PREMIUM FEATURES:
+ *     - Advanced analytics and detailed progress reports
+ *     - 1-on-1 coaching sessions
+ *     - Exclusive advanced video content
+ *     - Priority customer support
+ * 
+ * To extend this system:
+ * - All progress tracking variables are in window.ONBOARDING_STATE
+ * - Step completion handlers are in the updateProgress() function
+ * - Add new achievements by extending the achievements array
+ * - UI animations can be added to the celebration triggers
+ */
 
 // ---- Tab & Content Elements ----
 const educationTab = document.getElementById("educationTab");
@@ -3015,8 +3321,15 @@ document.getElementById("journalForm").onsubmit = function(e) {
 }
 </style>
 <script>
-const WRAP_COLS = [4,12,13,14]; // 0-based: Thesis, Emotion, Mistakes, Actions
-const NUM_COLS = 15;
+/* ========= JOURNAL GLOBAL CONSTANTS ========= */
+// Consolidate all journal-related constants to avoid redeclaration errors
+window.JOURNAL_CONFIG = {
+  WRAP_COLS: [4,12,13,14], // 0-based: Thesis, Emotion, Mistakes, Actions
+  NUM_COLS: 15
+};
+// For backward compatibility, create references
+const WRAP_COLS = window.JOURNAL_CONFIG.WRAP_COLS;
+const NUM_COLS = window.JOURNAL_CONFIG.NUM_COLS;
 
 // Helper: Get all rows as data
 function getJournalRows() {
@@ -3157,7 +3470,7 @@ loadJournal();
 <script>
 // Columns to wrap: Thesis (5), Emotion (13), Mistakes (14), Actions (15)
 // Their 0-based indexes: 4, 12, 13, 14
-const WRAP_COLS = [4,12,13,14];
+// Use global configuration to avoid redeclaration
 
 function fixJournalRows() {
   document.querySelectorAll("#journal-table-body tr").forEach(tr => {
@@ -3171,7 +3484,7 @@ function fixJournalRows() {
       tr.children[11].innerText = "";
     }
     // 2. Text wrapping for long columns
-    WRAP_COLS.forEach(idx => {
+    window.JOURNAL_CONFIG.WRAP_COLS.forEach(idx => {
       const td = tr.children[idx];
       if (td) {
         td.style.whiteSpace = "pre-wrap";
@@ -3209,7 +3522,7 @@ document.getElementById("journal-table-body").addEventListener("input", function
     }
   }
   // Always re-apply text wrapping
-  WRAP_COLS.forEach(idx => {
+  window.JOURNAL_CONFIG.WRAP_COLS.forEach(idx => {
     const td = tr.children[idx];
     if (td) {
       td.style.whiteSpace = "pre-wrap";
@@ -3255,8 +3568,9 @@ function updatePnlPreview() {
 });
 
 // --- Table logic: always builds Actions, P&L, wrapping ---
-const WRAP_COLS = [4,12,13]; // Thesis, Emotion, Mistakes
-const NUM_COLS = 15;
+// Use existing global configuration to avoid redeclaration
+const WRAP_COLS_ALT = [4,12,13]; // Alternative config: Thesis, Emotion, Mistakes (without Actions)
+// Use the main config unless specifically needed
 
 // PNL calculation helper
 function calcPNL(entry, exit, size) {
@@ -3268,10 +3582,10 @@ function calcPNL(entry, exit, size) {
 function addJournalRow(rowData = []) {
   const tr = document.createElement('tr');
   // Fill first 14 columns
-  for (let i = 0; i < NUM_COLS-1; i++) {
+  for (let i = 0; i < window.JOURNAL_CONFIG.NUM_COLS-1; i++) {
     const td = document.createElement('td');
     td.innerText = rowData[i] || "";
-    if (WRAP_COLS.includes(i)) td.classList.add('wrap-long');
+    if (WRAP_COLS_ALT.includes(i)) td.classList.add('wrap-long');
     // All editable except PNL (11) and Actions (14)
     if (i !== 11) {
       td.contentEditable = true;
@@ -3316,7 +3630,7 @@ function addJournalRow(rowData = []) {
   tr.appendChild(tdActions);
 
   // Apply text wrapping
-  WRAP_COLS.forEach(idx => {
+  WRAP_COLS_ALT.forEach(idx => {
     tr.children[idx].style.whiteSpace = "pre-wrap";
     tr.children[idx].style.wordBreak = "break-word";
     tr.children[idx].style.overflowWrap = "break-word";
@@ -3332,7 +3646,7 @@ function addJournalRow(rowData = []) {
 // Save/load
 function getJournalRows() {
   return Array.from(document.querySelectorAll('#journal-table-body tr')).map(tr =>
-    Array.from(tr.children).slice(0,NUM_COLS-1).map(td => td.innerText)
+    Array.from(tr.children).slice(0,window.JOURNAL_CONFIG.NUM_COLS-1).map(td => td.innerText)
   );
 }
 function saveJournal() {
@@ -3463,52 +3777,340 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-/* ========= ONBOARDING FUNCTIONALITY ========= */
+/* ========= ENHANCED ONBOARDING FUNCTIONALITY ========= */
 
-// Onboarding progress tracking
-let ceFiProgress = 0;
-let deFiProgress = 0;
-const totalSteps = 4;
+/*
+ * GLOBAL ONBOARDING STATE MANAGEMENT
+ * Extensible state object for tracking all onboarding progress
+ */
+window.ONBOARDING_STATE = {
+  ceFiProgress: 0,
+  deFiProgress: 0,
+  totalSteps: 4,
+  startTime: Date.now(),
+  achievements: [],
+  userPreferences: {
+    showAnimations: true,
+    playSound: false,
+    autoAdvance: true
+  }
+};
 
+// Enhanced progress tracking with animations and celebrations
 function updateProgress() {
-  const overallProgress = Math.round(((ceFiProgress + deFiProgress) / (totalSteps * 2)) * 100);
+  const state = window.ONBOARDING_STATE;
+  const overallProgress = Math.round(((state.ceFiProgress + state.deFiProgress) / (state.totalSteps * 2)) * 100);
   
-  // Update progress bars
+  // Update progress bars with smooth animations
   const overallBar = document.getElementById('overall-progress-bar');
   const ceFiBar = document.getElementById('cefi-progress-bar');
   const deFiBar = document.getElementById('defi-progress-bar');
   
-  if (overallBar) overallBar.style.width = overallProgress + '%';
-  if (ceFiBar) ceFiBar.style.width = (ceFiProgress / totalSteps) * 100 + '%';
-  if (deFiBar) deFiBar.style.width = (deFiProgress / totalSteps) * 100 + '%';
+  if (overallBar) {
+    overallBar.style.transition = 'width 0.5s ease-in-out';
+    overallBar.style.width = overallProgress + '%';
+  }
+  if (ceFiBar) {
+    ceFiBar.style.transition = 'width 0.5s ease-in-out';
+    ceFiBar.style.width = (state.ceFiProgress / state.totalSteps) * 100 + '%';
+  }
+  if (deFiBar) {
+    deFiBar.style.transition = 'width 0.5s ease-in-out';
+    deFiBar.style.width = (state.deFiProgress / state.totalSteps) * 100 + '%';
+  }
   
-  // Update progress text
+  // Update progress text with motivational messages
   const overallText = document.getElementById('overall-progress-text');
   const ceFiText = document.getElementById('cefi-progress-text');
   const deFiText = document.getElementById('defi-progress-text');
   
-  if (overallText) overallText.textContent = overallProgress + '% Complete';
-  if (ceFiText) ceFiText.textContent = ceFiProgress + '/' + totalSteps + ' steps completed';
-  if (deFiText) deFiText.textContent = deFiProgress + '/' + totalSteps + ' steps completed';
+  if (overallText) {
+    const motivationalMessage = getMotivationalMessage(overallProgress);
+    overallText.textContent = overallProgress + '% Complete - ' + motivationalMessage;
+  }
+  if (ceFiText) ceFiText.textContent = state.ceFiProgress + '/' + state.totalSteps + ' steps completed';
+  if (deFiText) deFiText.textContent = state.deFiProgress + '/' + state.totalSteps + ' steps completed';
   
-  // Show celebration if completed
+  // Trigger achievements and celebrations
+  checkAchievements(overallProgress);
+  
+  // Show final celebration if completed
   if (overallProgress === 100) {
-    const celebration = document.getElementById('completion-celebration');
-    if (celebration) {
-      celebration.classList.remove('hidden');
-      celebration.scrollIntoView({ behavior: 'smooth' });
-    }
+    triggerCompletionCelebration();
+  }
+  
+  // Save progress to localStorage
+  localStorage.setItem('onboardingState', JSON.stringify(state));
+}
+
+/* 
+ * MOTIVATIONAL SYSTEM
+ * Returns encouraging messages based on progress
+ */
+function getMotivationalMessage(progress) {
+  if (progress === 0) return "Let's begin your journey! 🚀";
+  if (progress < 25) return "Great start! Keep going! 💪";
+  if (progress < 50) return "You're doing amazing! 🌟";
+  if (progress < 75) return "Almost there! You've got this! 🔥";
+  if (progress < 100) return "Final stretch! So close! 🎯";
+  return "Congratulations! You're a pro! 🏆";
+}
+
+/*
+ * ACHIEVEMENT SYSTEM
+ * Tracks and awards achievements for various milestones
+ */
+function checkAchievements(progress) {
+  const state = window.ONBOARDING_STATE;
+  const timeElapsed = Date.now() - state.startTime;
+  
+  // Speed achievements
+  if (progress >= 50 && timeElapsed < 600000 && !state.achievements.includes('speed_demon')) { // 10 minutes
+    awardAchievement('speed_demon', '⚡ Speed Demon', 'Completed 50% in under 10 minutes!');
+  }
+  
+  // Milestone achievements
+  if (progress >= 25 && !state.achievements.includes('quarter_way')) {
+    awardAchievement('quarter_way', '🎯 Quarter Master', 'Completed 25% of your onboarding!');
+  }
+  
+  if (progress >= 50 && !state.achievements.includes('halfway_hero')) {
+    awardAchievement('halfway_hero', '🌟 Halfway Hero', 'Reached the halfway point!');
+  }
+  
+  if (progress >= 75 && !state.achievements.includes('almost_there')) {
+    awardAchievement('almost_there', '🔥 Almost There', 'You\'re in the final stretch!');
   }
 }
 
+/*
+ * ACHIEVEMENT AWARD SYSTEM
+ * Displays achievement notifications and stores them
+ */
+function awardAchievement(id, title, description) {
+  const state = window.ONBOARDING_STATE;
+  state.achievements.push(id);
+  
+  // Create achievement notification
+  const notification = document.createElement('div');
+  notification.className = 'fixed top-4 right-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white p-4 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-500';
+  notification.innerHTML = `
+    <div class="flex items-center gap-3">
+      <div class="text-2xl">🏆</div>
+      <div>
+        <div class="font-bold">${title}</div>
+        <div class="text-sm opacity-90">${description}</div>
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(notification);
+  
+  // Animate in
+  setTimeout(() => notification.classList.remove('translate-x-full'), 100);
+  
+  // Remove after 5 seconds
+  setTimeout(() => {
+    notification.classList.add('translate-x-full');
+    setTimeout(() => document.body.removeChild(notification), 500);
+  }, 5000);
+}
+
+/*
+ * ENHANCED STEP COMPLETION SYSTEM
+ * Handles step completion with animations, validations, and celebrations
+ */
 function completeStep(track, stepNumber) {
+  const state = window.ONBOARDING_STATE;
   const selector = track === 'cefi' ? '.cefi-step' : '.defi-step';
   const steps = document.querySelectorAll(selector);
   const currentStep = steps[stepNumber - 1];
   
   if (currentStep) {
-    // Update step status
+    // Update step status with animation
     const indicator = currentStep.querySelector('.step-indicator');
+    const status = currentStep.querySelector('.step-status');
+    const title = currentStep.querySelector('h4');
+    const border = currentStep;
+    
+    if (indicator) {
+      indicator.classList.add('bg-green-500');
+      indicator.classList.remove('bg-blue-500', 'bg-purple-500', 'bg-gray-500');
+      indicator.innerHTML = '✓';
+    }
+    
+    if (status) {
+      status.textContent = '✅';
+    }
+    
+    if (title) {
+      title.classList.add('text-green-300');
+      title.classList.remove('text-blue-300', 'text-purple-300', 'text-gray-400');
+    }
+    
+    // Update border color
+    border.classList.add('border-green-500');
+    border.classList.remove('border-blue-500', 'border-purple-500', 'border-gray-500');
+    
+    // Pulse animation for celebration
+    currentStep.style.animation = 'pulse 0.6s ease-in-out';
+    setTimeout(() => currentStep.style.animation = '', 600);
+    
+    // Update progress counters
+    if (track === 'cefi') {
+      state.ceFiProgress = stepNumber;
+    } else {
+      state.deFiProgress = stepNumber;
+    }
+    
+    // Update checkbox progress within the step
+    updateStepCheckboxProgress(currentStep, track);
+    
+    // Enable next step if available
+    enableNextStep(track, stepNumber);
+    
+    // Trigger mini celebration
+    triggerStepCelebration(currentStep, track, stepNumber);
+    
+    // Update overall progress
+    updateProgress();
+  }
+}
+
+/*
+ * STEP CHECKBOX PROGRESS TRACKING
+ * Updates progress bars within individual steps based on checkbox completion
+ */
+function updateStepCheckboxProgress(stepElement, track) {
+  const checkboxes = stepElement.querySelectorAll('.step-checkbox');
+  const progressBar = stepElement.querySelector(`.${track}-step-progress`);
+  
+  if (checkboxes.length > 0 && progressBar) {
+    const completedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+    const percentage = (completedCount / checkboxes.length) * 100;
+    progressBar.style.width = percentage + '%';
+    
+    // Auto-complete step when all checkboxes are checked
+    if (percentage === 100) {
+      const stepNumber = parseInt(stepElement.dataset.step);
+      setTimeout(() => completeStep(track, stepNumber), 500);
+    }
+  }
+}
+
+/*
+ * NEXT STEP ENABLER
+ * Unlocks the next step in the sequence
+ */
+function enableNextStep(track, completedStepNumber) {
+  const selector = track === 'cefi' ? '.cefi-step' : '.defi-step';
+  const steps = document.querySelectorAll(selector);
+  const nextStep = steps[completedStepNumber]; // Next step (0-indexed, so completedStepNumber is correct)
+  
+  if (nextStep) {
+    const indicator = nextStep.querySelector('.step-indicator');
+    const title = nextStep.querySelector('h4');
+    const button = nextStep.querySelector('.start-step-btn');
+    const status = nextStep.querySelector('.step-status');
+    const border = nextStep;
+    
+    // Update visual state
+    if (indicator) {
+      indicator.classList.add(track === 'cefi' ? 'bg-blue-500' : 'bg-purple-500');
+      indicator.classList.remove('bg-gray-500');
+    }
+    
+    if (title) {
+      title.classList.add(track === 'cefi' ? 'text-blue-300' : 'text-purple-300');
+      title.classList.remove('text-gray-400');
+    }
+    
+    if (button) {
+      button.disabled = false;
+      button.classList.remove('bg-gray-600', 'cursor-not-allowed');
+      button.classList.add(track === 'cefi' ? 'bg-blue-600' : 'bg-purple-600');
+      button.classList.add(track === 'cefi' ? 'hover:bg-blue-700' : 'hover:bg-purple-700');
+      button.textContent = 'Start Step';
+    }
+    
+    if (status) {
+      status.textContent = '⏳';
+    }
+    
+    // Update border
+    border.classList.add(track === 'cefi' ? 'border-blue-500' : 'border-purple-500');
+    border.classList.remove('border-gray-500');
+    
+    // Gentle highlight animation
+    nextStep.style.boxShadow = '0 0 20px rgba(59, 130, 246, 0.5)';
+    setTimeout(() => nextStep.style.boxShadow = '', 2000);
+  }
+}
+
+/*
+ * STEP CELEBRATION SYSTEM
+ * Triggers mini celebrations for individual step completions
+ */
+function triggerStepCelebration(stepElement, track, stepNumber) {
+  // Create floating celebration emoji
+  const celebration = document.createElement('div');
+  celebration.className = 'fixed z-50 pointer-events-none';
+  celebration.innerHTML = track === 'cefi' ? '🏦✨' : '🔗✨';
+  celebration.style.fontSize = '2rem';
+  celebration.style.left = '50%';
+  celebration.style.top = '50%';
+  celebration.style.transform = 'translate(-50%, -50%)';
+  celebration.style.animation = 'float-up 2s ease-out forwards';
+  
+  document.body.appendChild(celebration);
+  
+  // Remove after animation
+  setTimeout(() => document.body.removeChild(celebration), 2000);
+  
+  // Add floating animation keyframes if not already present
+  if (!document.getElementById('celebration-styles')) {
+    const celebrationStyles = document.createElement('style');
+    celebrationStyles.id = 'celebration-styles';
+    celebrationStyles.textContent = `
+      @keyframes float-up {
+        0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        100% { opacity: 0; transform: translate(-50%, -150%) scale(1.5); }
+      }
+      @keyframes pulse { 
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
+    `;
+    document.head.appendChild(celebrationStyles);
+  }
+}
+
+/*
+ * FINAL COMPLETION CELEBRATION
+ * Triggers when user completes entire onboarding
+ */
+function triggerCompletionCelebration() {
+  const celebration = document.getElementById('completion-celebration');
+  if (celebration) {
+    celebration.classList.remove('hidden');
+    celebration.scrollIntoView({ behavior: 'smooth' });
+    
+    // Add confetti effect (placeholder for external library)
+    console.log('🎉 FULL COMPLETION CELEBRATION TRIGGERED! 🎉');
+    
+    // Award final achievement
+    awardAchievement('onboarding_master', '🎓 Onboarding Master', 'Completed the entire CeFi/DeFi onboarding program!');
+    
+    // Calculate completion time achievement
+    const state = window.ONBOARDING_STATE;
+    const timeElapsed = Date.now() - state.startTime;
+    const minutes = Math.round(timeElapsed / 60000);
+    
+    if (minutes < 30) {
+      awardAchievement('speed_runner', '🏃‍♂️ Speed Runner', `Completed onboarding in ${minutes} minutes!`);
+    }
+  }
+}
     const status = currentStep.querySelector('.step-status');
     const border = currentStep;
     
