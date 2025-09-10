@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Griffin's Rise: Advanced Trading Journal — Pro Edition</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Griffin's Rise: Advanced Trading Journal Pro Edition - Professional trading journal for tracking trades, managing risk, and improving trading performance." />
+  <meta name="keywords" content="trading journal, trade tracker, risk management, trading education, financial analysis" />
+  <meta name="author" content="Griffin's Rise" />
+  <title>Griffin's Rise: Advanced Trading Journal — Pro Edition</title>
   <!-- Tailwind for utility classes -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- FontAwesome for icons -->
@@ -483,7 +486,52 @@
 .syllabus-phase-card[data-complete="true"] .syllabus-phase-title,
 .syllabus-phase-card[data-complete="true"] .syllabus-phase-desc {
   color: #2563eb !important;
-} 
+}
+
+/* Additional styles to replace inline styles */
+.logo-min-width {
+  min-width: 120px;
+}
+
+.montserrat-font {
+  font-family: Montserrat, sans-serif;
+}
+
+.pro-badge {
+  background: linear-gradient(90deg, #f59e42 0%, #2563eb 100%);
+  color: #fff;
+}
+
+.max-width-100rem {
+  max-width: 100rem;
+}
+
+.progress-bar-initial {
+  width: 0%;
+}
+
+.max-width-64rem {
+  max-width: 64rem;
+  margin: auto;
+}
+
+.journal-table-container {
+  max-width: 80rem;
+  min-width: 340px;
+  overflow-x: auto;
+}
+
+.journal-pnl-readonly {
+  background: #28304a !important;
+  opacity: 0.7;
+}
+
+.mistakes-cell {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
   </style>
 </head>
 <body>
@@ -491,38 +539,38 @@
     <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-2">
       <div class="flex items-center space-x-5">
         <img src="/public/griffin-rise-log.png" alt="Griffin's Rise Trading Journal Logo"
-          class="h-20 w-20 rounded-full shadow-xl ring-4 ring-blue-500 ring-opacity-60 bg-white object-contain" style="min-width:120px;" />
+          class="h-20 w-20 rounded-full shadow-xl ring-4 ring-blue-500 ring-opacity-60 bg-white object-contain logo-min-width" />
         <div>
-          <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-blue-100" style="font-family:Montserrat,sans-serif">
+          <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-blue-100 montserrat-font">
             Griffin's Rise: <span class="text-yellow-400">Advanced Trading Journal</span>
           </h1>
-          <span class="badge mt-2 ml-1 align-middle text-base" style="background:linear-gradient(90deg,#f59e42 0%,#2563eb 100%);color:#fff;">PRO EDITION</span>
+          <span class="badge mt-2 ml-1 align-middle text-base pro-badge">PRO EDITION</span>
         </div>
       </div>
-      <nav class="flex flex-wrap gap-1 md:gap-2 items-center mt-4 md:mt-0">
-        <button id="educationTab" class="tab-btn bg-gray-700 hover:bg-blue-800 px-4 py-2 rounded transition hidden">Education</button>
-        <button id="syllabusTab" class="tab-btn bg-blue-900 hover:bg-blue-700 px-4 py-2 rounded transition hidden">Syllabus</button>
-        <button id="trainingManualTab" class="tab-btn bg-yellow-700 hover:bg-yellow-600 px-4 py-2 rounded transition hidden">Training Manual</button>
-        <button id="journalTab" class="tab-btn bg-gray-700 hover:bg-blue-900 px-4 py-2 rounded transition hidden">Journal</button>
-        <button id="dashboardTab" class="tab-btn bg-gray-700 hover:bg-blue-900 px-4 py-2 rounded transition hidden">Dashboard</button>
-        <button id="loginTab" class="tab-btn bg-green-700 hover:bg-green-600 px-4 py-2 rounded transition">Register / Login</button>
+      <nav class="flex flex-wrap gap-1 md:gap-2 items-center mt-4 md:mt-0" role="navigation" aria-label="Main navigation">
+        <button id="educationTab" class="tab-btn bg-gray-700 hover:bg-blue-800 px-4 py-2 rounded transition hidden" role="tab" aria-selected="false">Education</button>
+        <button id="syllabusTab" class="tab-btn bg-blue-900 hover:bg-blue-700 px-4 py-2 rounded transition hidden" role="tab" aria-selected="false">Syllabus</button>
+        <button id="trainingManualTab" class="tab-btn bg-yellow-700 hover:bg-yellow-600 px-4 py-2 rounded transition hidden" role="tab" aria-selected="false">Training Manual</button>
+        <button id="journalTab" class="tab-btn bg-gray-700 hover:bg-blue-900 px-4 py-2 rounded transition hidden" role="tab" aria-selected="false">Journal</button>
+        <button id="dashboardTab" class="tab-btn bg-gray-700 hover:bg-blue-900 px-4 py-2 rounded transition hidden" role="tab" aria-selected="false">Dashboard</button>
+        <button id="loginTab" class="tab-btn bg-green-700 hover:bg-green-600 px-4 py-2 rounded transition" role="tab" aria-selected="true">Register / Login</button>
         <button id="logoutBtn" class="tab-btn bg-red-700 hover:bg-red-800 px-4 py-2 rounded transition hidden">Logout</button>
       </nav>
     </div>
   </header>
   <main class="container mx-auto px-4 max-w-4xl">
     <!-- Login/Register -->
-    <section id="loginContent">
+    <section id="loginContent" role="tabpanel" aria-labelledby="loginTab">
       <div class="manual-section p-6 rounded-lg shadow-lg max-w-md mx-auto mt-8">
         <h2 class="text-2xl font-bold mb-4 text-green-400 text-center">Register / Login</h2>
         <form id="loginForm" class="space-y-4">
           <div>
             <label class="block mb-1" for="login-username">Username</label>
-            <input id="login-username" type="text" class="w-full px-3 py-2 rounded" required />
+            <input id="login-username" type="text" class="w-full px-3 py-2 rounded" autocomplete="username" required />
           </div>
           <div>
             <label class="block mb-1" for="login-password">Password</label>
-            <input id="login-password" type="password" class="w-full px-3 py-2 rounded" required />
+            <input id="login-password" type="password" class="w-full px-3 py-2 rounded" autocomplete="current-password" required />
           </div>
           <div class="flex justify-between items-center">
             <button type="submit" class="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded font-semibold transition">Login</button>
@@ -532,15 +580,15 @@
         <form id="registerForm" class="space-y-4 hidden">
           <div>
             <label class="block mb-1" for="register-username">Username</label>
-            <input id="register-username" type="text" class="w-full px-3 py-2 rounded" required />
+            <input id="register-username" type="text" class="w-full px-3 py-2 rounded" autocomplete="username" required />
           </div>
           <div>
             <label class="block mb-1" for="register-password">Password</label>
-            <input id="register-password" type="password" class="w-full px-3 py-2 rounded" required />
+            <input id="register-password" type="password" class="w-full px-3 py-2 rounded" autocomplete="new-password" required />
           </div>
           <div>
             <label class="block mb-1" for="register-confirm">Confirm Password</label>
-            <input id="register-confirm" type="password" class="w-full px-3 py-2 rounded" required />
+            <input id="register-confirm" type="password" class="w-full px-3 py-2 rounded" autocomplete="new-password" required />
           </div>
           <div class="flex justify-between items-center">
             <button type="submit" class="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded font-semibold transition">Register</button>
@@ -552,7 +600,7 @@
     </section>
 
    <!-- Education Tab -->
-<section id="educationContent" class="hidden">
+<section id="educationContent" class="hidden" role="tabpanel" aria-labelledby="educationTab">
   <div class="manual-section p-8 rounded-xl shadow mb-8">
     <div class="flex flex-col md:flex-row items-center gap-8">
       <div class="md:w-2/3">
@@ -585,7 +633,7 @@
   </div>
 </section>
 <!-- Griffin's Rise Trading Mastery Syllabus (Pro Edition) -->
-<section id="syllabusContent">
+<section id="syllabusContent" role="tabpanel" aria-labelledby="syllabusTab">
   <div class="syllabus-container">
     <!-- Header -->
     <div class="syllabus-header">
@@ -673,7 +721,8 @@
     gap:1rem;
     cursor:pointer;
     padding:1.5rem 1.3rem 1.2rem 1.3rem;
-    user-select:none; -webkit-user-select:none;
+    -webkit-user-select:none;
+    user-select:none;
     background:rgba(255,255,255,0.04);
     transition:.2s;
   }
@@ -1154,7 +1203,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <!-- Training Manual -->
 <!-- Training Manual Section: Professional Pro Edition -->
-<section id="trainingManualContent" class="hidden">
+<section id="trainingManualContent" class="hidden" role="tabpanel" aria-labelledby="trainingManualTab">
   <div class="max-w-6xl mx-auto p-6">
     <!-- Header Section -->
     <div class="bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl p-6 mb-8 shadow-xl">
@@ -1598,8 +1647,8 @@ document.addEventListener('DOMContentLoaded', function() {
   </style>
 </section>
 <!-- Trading Journal & Syllabus Pro: Now with Dashboard Sync -->
-<section id="journalContent" class="hidden">
-  <div class="manual-section p-8 rounded-xl shadow mb-8 mx-auto" style="max-width:100rem;">
+<section id="journalContent" class="hidden" role="tabpanel" aria-labelledby="journalTab">
+  <div class="manual-section p-8 rounded-xl shadow mb-8 mx-auto max-width-100rem">
 
     <!-- HEADER + BADGES/PROGRESS -->
     <div class="flex flex-col md:flex-row items-center gap-8">
@@ -1623,7 +1672,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <span id="journal-progress-label" class="ml-auto text-blue-200 text-xs"></span>
           </div>
           <div class="w-full bg-blue-900/60 rounded-full h-6 shadow relative">
-            <div id="journal-progress-bar" class="bg-gradient-to-r from-yellow-400 to-green-300 h-6 rounded-full transition-all" style="width:0%"></div>
+            <div id="journal-progress-bar" class="bg-gradient-to-r from-yellow-400 to-green-300 h-6 rounded-full transition-all progress-bar-initial"></div>
           </div>
         </div>
         <div class="flex flex-wrap gap-2 justify-center mt-1" id="journal-badges"></div>
@@ -1631,7 +1680,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 
     <!-- PHASES & PHASE-STATS -->
-    <div class="mt-8 mb-8 p-6 rounded-xl bg-[#21243b] border border-blue-900 shadow-lg" style="max-width:64rem;margin:auto;">
+    <div class="mt-8 mb-8 p-6 rounded-xl bg-[#21243b] border border-blue-900 shadow-lg max-width-64rem">
       <h3 class="text-xl font-bold text-yellow-100 flex items-center gap-2 mb-3"><i class="fas fa-graduation-cap"></i> Syllabus Phase Progress</h3>
       <div id="syllabus-phase-list" class="flex flex-col gap-4"></div>
       <div class="mt-6">
@@ -1641,15 +1690,14 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 
     <!-- LEADERBOARD -->
-    <div class="mt-2 mb-8 p-6 rounded-xl bg-[#181e2a] border border-blue-900 shadow-lg" style="max-width:64rem;margin:auto;">
+    <div class="mt-2 mb-8 p-6 rounded-xl bg-[#181e2a] border border-blue-900 shadow-lg max-width-64rem">
       <h3 class="text-lg font-bold text-yellow-100 flex items-center gap-2 mb-3"><i class="fas fa-trophy"></i> Leaderboard: Top Journalers (Device Only)</h3>
       <div id="journal-leaderboard" class="flex flex-col gap-1"></div>
       <div class="text-xs text-blue-100 mt-2">* This leaderboard is stored only in your browser (local device/sandbox).</div>
     </div>
 
     <!-- JOURNAL ENTRY FORM -->
-    <div class="mt-12 mb-6 bg-[#232946] p-6 rounded-lg border border-blue-900 shadow-2xl mx-auto"
-         style="max-width:80rem;min-width:340px;overflow-x:auto;">
+    <div class="mt-12 mb-6 bg-[#232946] p-6 rounded-lg border border-blue-900 shadow-2xl mx-auto journal-table-container">
       <h3 class="text-xl font-bold text-blue-100 mb-4">New Trade Entry</h3>
       <form id="journalForm" class="grid grid-cols-1 md:grid-cols-4 gap-4 journal-form" autocomplete="off">
         <div>
@@ -1711,7 +1759,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 <div>
   <label class="block mb-1" for="journal-pnl">P&amp;L ($)</label>
-  <input type="number" step="any" id="journal-pnl" readonly tabindex="-1" style="background: #28304a !important; opacity:0.7;" class="w-full" />
+  <input type="number" step="any" id="journal-pnl" readonly tabindex="-1" class="w-full journal-pnl-readonly" />
 </div>
         <div>
           <label class="block mb-1" for="journal-emotion">Emotion/Psychology</label>
@@ -1797,7 +1845,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </section>
  <!-- Dashboard -->
 <!-- DASHBOARD SECTION: Clean, Synced, Standalone, Paste-Ready -->
-<section id="dashboardContent" class="hidden">
+<section id="dashboardContent" class="hidden" role="tabpanel" aria-labelledby="dashboardTab">
   <div class="dashboard-section p-8 rounded-xl shadow mb-8 mx-auto max-w-7xl">
     <h2 class="text-3xl font-extrabold mb-3 text-blue-200">Dashboard Overview</h2>
     <ul class="mt-4 list-disc ml-8 text-blue-50 text-base space-y-1">
@@ -2471,7 +2519,6 @@ document.getElementById("journalExportBtn").onclick = function() {
     document.getElementById("journal-message").textContent = "";
   }, 3000);
 };
-};
 </script>
 
 <script>
@@ -2512,7 +2559,7 @@ function renderJournalTable() {
       <td>${entry.outcome || ""}</td>
       <td>${typeof entry.pnl !== "undefined" ? entry.pnl : ""}</td>
       <td>${entry.emotion || ""}</td>
-      <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${entry.mistakes || ""}">${entry.mistakes || ""}</td>
+      <td class="mistakes-cell" title="${entry.mistakes || ""}">${entry.mistakes || ""}</td>
       <td>
         <button onclick="editJournalEntry(${i})" class="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-sm mr-1">
           <i class="fas fa-edit"></i>
@@ -2875,78 +2922,32 @@ function updateJournalStats() {
   }
 }
 
+// --- P&L live preview in the form ---
+function updatePnlPreview() {
+  const entry = parseFloat(document.getElementById('journal-entry').value);
+  const exit = parseFloat(document.getElementById('journal-exit').value);
+  const size = parseFloat(document.getElementById('journal-size').value);
+  const pnlBox = document.getElementById('journal-pnl');
+  if (!isNaN(entry) && !isNaN(exit) && !isNaN(size)) {
+    pnlBox.value = ((exit - entry) * size).toFixed(2);
+  } else {
+    pnlBox.value = '';
+  }
+}
+
+// Add event listeners for live preview
+document.addEventListener("DOMContentLoaded", function() {
+  ['journal-entry','journal-exit','journal-size'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.addEventListener('input', updatePnlPreview);
+  });
+});
+
 // Restore on load
 loadJournal();
 
 </script>
-<script>
-// Columns to wrap: Thesis (5), Emotion (13), Mistakes (14), Actions (15)
-// Their 0-based indexes: 4, 12, 13, 14
-const WRAP_COLS = [4,12,13,14];
 
-function fixJournalRows() {
-  document.querySelectorAll("#journal-table-body tr").forEach(tr => {
-    // 1. P&L auto-calc
-    const entry = parseFloat(tr.children[5]?.innerText);
-    const exit = parseFloat(tr.children[6]?.innerText);
-    const size = parseFloat(tr.children[9]?.innerText);
-    if (!isNaN(entry) && !isNaN(exit) && !isNaN(size)) {
-      tr.children[11].innerText = ((exit - entry) * size).toFixed(2);
-    } else {
-      tr.children[11].innerText = "";
-    }
-    // 2. Text wrapping for long columns
-    WRAP_COLS.forEach(idx => {
-      const td = tr.children[idx];
-      if (td) {
-        td.style.whiteSpace = "pre-wrap";
-        td.style.wordBreak = "break-word";
-        td.style.overflowWrap = "break-word";
-        td.style.maxWidth = "350px";
-        td.style.writingMode = "horizontal-tb";
-        td.style.verticalAlign = "top";
-      }
-    });
-  });
-}
-
-// Re-run on page load and after every Add Entry
-document.addEventListener("DOMContentLoaded", fixJournalRows);
-// If you have an Add Entry button with id="journalForm", hook it:
-const jForm = document.getElementById("journalForm");
-if (jForm) {
-  jForm.addEventListener("submit", function() {
-    setTimeout(fixJournalRows, 50); // Give table time to update
-  });
-}
-// In case you have Edit-in-place: recalc on editing entry/exit/size
-document.getElementById("journal-table-body").addEventListener("input", function(e) {
-  const td = e.target;
-  const tr = td.closest("tr");
-  if (tr && [5,6,9].includes(td.cellIndex)) {
-    const entry = parseFloat(tr.children[5]?.innerText);
-    const exit = parseFloat(tr.children[6]?.innerText);
-    const size = parseFloat(tr.children[9]?.innerText);
-    if (!isNaN(entry) && !isNaN(exit) && !isNaN(size)) {
-      tr.children[11].innerText = ((exit - entry) * size).toFixed(2);
-    } else {
-      tr.children[11].innerText = "";
-    }
-  }
-  // Always re-apply text wrapping
-  WRAP_COLS.forEach(idx => {
-    const td = tr.children[idx];
-    if (td) {
-      td.style.whiteSpace = "pre-wrap";
-      td.style.wordBreak = "break-word";
-      td.style.overflowWrap = "break-word";
-      td.style.maxWidth = "350px";
-      td.style.writingMode = "horizontal-tb";
-      td.style.verticalAlign = "top";
-    }
-  });
-});
-</script>
 <style>
 /* Force proper width and wrapping for Thesis, Emotion, Mistakes, Actions columns */
 /* Target the <tbody> so it affects dynamic rows as well */
@@ -2961,232 +2962,6 @@ document.getElementById("journal-table-body").addEventListener("input", function
   vertical-align: top !important;
 }
 </style>
-<script>
-// --- P&L live preview in the form ---
-function updatePnlPreview() {
-  const entry = parseFloat(document.getElementById('journal-entry').value);
-  const exit = parseFloat(document.getElementById('journal-exit').value);
-  const size = parseFloat(document.getElementById('journal-size').value);
-  const pnlBox = document.getElementById('journal-pnl');
-  if (!isNaN(entry) && !isNaN(exit) && !isNaN(size)) {
-    pnlBox.value = ((exit - entry) * size).toFixed(2);
-  } else {
-    pnlBox.value = '';
-  }
-}
-['journal-entry','journal-exit','journal-size'].forEach(id => {
-  const el = document.getElementById(id);
-  if(el) el.addEventListener('input', updatePnlPreview);
-});
 
-// --- Table logic: always builds Actions, P&L, wrapping ---
-const WRAP_COLS = [4,12,13]; // Thesis, Emotion, Mistakes
-const NUM_COLS = 15;
-
-// PNL calculation helper
-function calcPNL(entry, exit, size) {
-  const e = parseFloat(entry), x = parseFloat(exit), s = parseFloat(size);
-  return (!isNaN(e) && !isNaN(x) && !isNaN(s)) ? ((x - e) * s).toFixed(2) : "";
-}
-
-// Add one row, including Actions
-function addJournalRow(rowData = []) {
-  const tr = document.createElement('tr');
-  // Fill first 14 columns
-  for (let i = 0; i < NUM_COLS-1; i++) {
-    const td = document.createElement('td');
-    td.innerText = rowData[i] || "";
-    if (WRAP_COLS.includes(i)) td.classList.add('wrap-long');
-    // All editable except PNL (11) and Actions (14)
-    if (i !== 11) {
-      td.contentEditable = true;
-      td.addEventListener('input', function() {
-        if ([5,6,9].includes(i)) {
-          tr.children[11].innerText = calcPNL(
-            tr.children[5].innerText,
-            tr.children[6].innerText,
-            tr.children[9].innerText
-          );
-        }
-        saveJournal();
-      });
-    }
-    tr.appendChild(td);
-  }
-  // PNL column (auto-calc, not editable)
-  tr.children[11].innerText = calcPNL(
-    tr.children[5].innerText,
-    tr.children[6].innerText,
-    tr.children[9].innerText
-  );
-  // Actions column
-  const tdActions = document.createElement('td');
-  tdActions.innerHTML = `
-    <button class="edit-btn" style="margin-right:6px;background:#2563eb;color:#fff;padding:2px 8px;border-radius:4px;cursor:pointer;">Edit</button>
-    <button class="delete-btn" style="background:#dc2626;color:#fff;padding:2px 8px;border-radius:4px;cursor:pointer;">Delete</button>
-  `;
-  tdActions.style.whiteSpace = "nowrap";
-  tdActions.querySelector('.edit-btn').onclick = function() {
-    Array.from(tr.children).forEach((td, idx) => {
-      if(idx !== 11 && idx !== 14) td.contentEditable = true;
-    });
-  };
-  tdActions.querySelector('.delete-btn').onclick = function() {
-    if(confirm("Delete this entry?")) {
-      tr.remove();
-      saveJournal();
-      updateJournalStats();
-    }
-  };
-  tr.appendChild(tdActions);
-
-  // Apply text wrapping
-  WRAP_COLS.forEach(idx => {
-    tr.children[idx].style.whiteSpace = "pre-wrap";
-    tr.children[idx].style.wordBreak = "break-word";
-    tr.children[idx].style.overflowWrap = "break-word";
-    tr.children[idx].style.minWidth = "220px";
-    tr.children[idx].style.maxWidth = "340px";
-    tr.children[idx].style.width = "270px";
-    tr.children[idx].style.verticalAlign = "top";
-  });
-
-  document.getElementById('journal-table-body').appendChild(tr);
-}
-
-// Save/load
-function getJournalRows() {
-  return Array.from(document.querySelectorAll('#journal-table-body tr')).map(tr =>
-    Array.from(tr.children).slice(0,NUM_COLS-1).map(td => td.innerText)
-  );
-}
-function saveJournal() {
-  localStorage.setItem('journalEntries', JSON.stringify(getJournalRows()));
-}
-function loadJournal() {
-  const data = JSON.parse(localStorage.getItem('journalEntries') || "[]");
-  document.getElementById('journal-table-body').innerHTML = "";
-  data.forEach(row => addJournalRow(row));
-  updateJournalStats();
-}
-
-// Progress
-function updateJournalStats() {
-  const rows = getJournalRows();
-  const jp = document.getElementById('journal-progress');
-  if(jp) jp.textContent = rows.length ? rows.length + " entries logged." : "No entries yet.";
-  const bar = document.getElementById('journal-progress-bar');
-  const label = document.getElementById('journal-progress-label');
-  if(bar && label) {
-    const pct = Math.min(100, Math.round(rows.length / 10 * 100));
-    bar.style.width = pct + "%";
-    label.innerText = rows.length + " entries ("+pct+"%)";
-  }
-}
-
-// Add entry from form
-const journalForm = document.getElementById('journalForm');
-if(journalForm) {
-  journalForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const f = e.target;
-    const row = [
-      f['journal-date'].value,
-      f['journal-asset'].value,
-      f['journal-direction'].value,
-      f['journal-phase'].value,
-      f['journal-thesis'].value,
-      f['journal-entry'].value,
-      f['journal-exit'].value,
-      f['journal-sl'].value,
-      f['journal-tp'].value,
-      f['journal-size'].value,
-      f['journal-outcome'].value,
-      "", // PNL auto-calculated
-      f['journal-emotion'].value,
-      f['journal-mistakes'].value
-    ];
-    addJournalRow(row);
-    saveJournal();
-    updateJournalStats();
-    f.reset();
-    document.getElementById('journal-message').textContent = "Entry added!";
-    setTimeout(()=>{document.getElementById('journal-message').textContent = "";}, 1500);
-    updatePnlPreview(); // clear preview
-  });
-}
-
-// Clear all
-const clearBtn = document.getElementById("journalClearBtn");
-if(clearBtn) {
-  clearBtn.addEventListener("click",function() {
-    if (confirm("Clear all journal entries?")) {
-      document.getElementById('journal-table-body').innerHTML = "";
-      saveJournal();
-      updateJournalStats();
-    }
-  });
-}
-
-// Export CSV
-const exportBtn = document.getElementById("journalExportBtn");
-if(exportBtn) {
-  exportBtn.addEventListener("click",function() {
-    let csv = "";
-    document.querySelectorAll('.overflow-x-auto thead th').forEach(th=>{
-      csv += '"' + th.innerText.replace(/"/g,'""') + '",';
-    });
-    csv = csv.slice(0,-1) + '\n';
-    getJournalRows().forEach(row => {
-      csv += row.map(cell => '"' + cell.replace(/"/g,'""') + '"').join(",") + '\n';
-    });
-    const blob = new Blob([csv], {type:'text/csv'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = "journal.csv";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  });
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-  loadJournal();
-  updatePnlPreview();
-});
-
-// --- Style fixes: wrapping and P&L field color ---
-const style = document.createElement("style");
-style.textContent = `
-#journal-table-body td.wrap-long {
-  white-space: pre-wrap !important;
-  word-break: break-word !important;
-  overflow-wrap: break-word !important;
-  min-width: 220px !important;
-  max-width: 340px !important;
-  width: 270px !important;
-  vertical-align: top !important;
-}
-#journal-table-body td:focus {
-  outline: 2px solid #60a5fa;
-  background: #0d233d;
-}
-#journal-table-body button.edit-btn:hover {
-  background: #1d4ed8;
-}
-#journal-table-body button.delete-btn:hover {
-  background: #b91c1c;
-}
-/* Match P&L input to table color */
-#journal-pnl {
-  background: #181e2a !important;
-  color: #fff !important;
-  opacity: 1 !important;
-}
-`;
-document.head.appendChild(style);
-</script>
 </body>
 </html>
