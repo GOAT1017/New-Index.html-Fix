@@ -1,0 +1,2215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CeFi/DeFi Onboarding Platform - Your Gateway to Digital Finance</title>
+    <meta name="description" content="Professional onboarding experience for CeFi and DeFi platforms. Learn, setup, and start trading with confidence.">
+    
+    <!-- Modern CSS Framework - Using Tailwind for rapid development -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Icons for professional UI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Professional Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* 
+        ============================================
+        CUSTOM CSS FOR PROFESSIONAL ONBOARDING UI
+        ============================================
+        
+        This section contains custom styles that extend Tailwind CSS
+        for a polished, production-ready onboarding experience.
+        */
+        
+        :root {
+            --primary-blue: #2563eb;
+            --primary-purple: #7c3aed;
+            --primary-green: #059669;
+            --primary-gold: #f59e0b;
+            --dark-bg: #0f172a;
+            --dark-card: #1e293b;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --success-green: #10b981;
+            --warning-orange: #f97316;
+            --error-red: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1e293b 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 
+        ============================================
+        ONBOARDING PROGRESS SYSTEM
+        ============================================
+        */
+        
+        .progress-container {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+            border-radius: 2px;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+        }
+
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            background: var(--dark-card);
+            color: var(--text-muted);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step-indicator.active {
+            border-color: var(--primary-blue);
+            background: var(--primary-blue);
+            color: white;
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .step-indicator.completed {
+            border-color: var(--success-green);
+            background: var(--success-green);
+            color: white;
+        }
+
+        .step-indicator.completed::after {
+            content: '✓';
+            position: absolute;
+            font-size: 0.875rem;
+        }
+
+        /* 
+        ============================================
+        INTERACTIVE CARDS & ANIMATIONS
+        ============================================
+        */
+        
+        .onboarding-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .onboarding-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .onboarding-card:hover::before {
+            opacity: 1;
+        }
+
+        .onboarding-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary-blue);
+        }
+
+        /* 
+        ============================================
+        TOOLTIP SYSTEM
+        ============================================
+        */
+        
+        .tooltip-trigger {
+            position: relative;
+            cursor: help;
+            display: inline-block;
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.95);
+            color: var(--text-light);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: rgba(15, 23, 42, 0.95);
+        }
+
+        .tooltip-trigger:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(-8px);
+        }
+
+        /* 
+        ============================================
+        FORM VALIDATION & FEEDBACK
+        ============================================
+        */
+        
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: rgba(30, 41, 59, 0.5);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            background: rgba(30, 41, 59, 0.8);
+        }
+
+        .form-input.valid {
+            border-color: var(--success-green);
+        }
+
+        .form-input.invalid {
+            border-color: var(--error-red);
+        }
+
+        .validation-message {
+            position: absolute;
+            bottom: -1.5rem;
+            left: 0;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+
+        .validation-message.success {
+            color: var(--success-green);
+        }
+
+        .validation-message.error {
+            color: var(--error-red);
+        }
+
+        /* 
+        ============================================
+        CELEBRATION & SUCCESS ANIMATIONS
+        ============================================
+        */
+        
+        .celebration-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .celebration-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .celebration-content {
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .celebration-modal.active .celebration-content {
+            transform: scale(1);
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--primary-gold);
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* 
+        ============================================
+        VIDEO PLACEHOLDER STYLING
+        ============================================
+        */
+        
+        .video-placeholder {
+            position: relative;
+            background: linear-gradient(135deg, #1e293b, #374151);
+            border-radius: 12px;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed var(--border-color);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .video-placeholder:hover {
+            border-color: var(--primary-blue);
+            background: linear-gradient(135deg, #1e293b, #2563eb);
+        }
+
+        .video-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(37, 99, 235, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-button {
+            width: 24px;
+            height: 24px;
+            background: var(--primary-blue);
+            clip-path: polygon(0 0, 100% 50%, 0 100%);
+            margin-left: 4px;
+        }
+
+        /* 
+        ============================================
+        RESPONSIVE DESIGN
+        ============================================
+        */
+        
+        @media (max-width: 768px) {
+            .onboarding-card {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            .step-indicator {
+                width: 2rem;
+                height: 2rem;
+                font-size: 0.875rem;
+            }
+            
+            .celebration-content {
+                padding: 2rem;
+                margin: 1rem;
+            }
+        }
+
+        /* 
+        ============================================
+        ACCESSIBILITY IMPROVEMENTS
+        ============================================
+        */
+        
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* 
+        ============================================
+        BUTTON SYSTEM
+        ============================================
+        */
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--border-color);
+            color: var(--text-light);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-blue);
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        .btn-success {
+            background: var(--success-green);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Hidden states for onboarding steps */
+        .onboarding-step {
+            display: none;
+        }
+
+        .onboarding-step.active {
+            display: block;
+        }
+
+        /* Platform choice selection states */
+        .platform-choice.selected {
+            border-color: var(--primary-blue);
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        .platform-option.selected {
+            border-color: var(--primary-blue);
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        /* Verification status indicators */
+        .verification-status {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+
+        .verification-status.pending {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning-orange);
+        }
+
+        .verification-status.completed {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-green);
+        }
+
+        .verification-status.failed {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error-red);
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+    ============================================
+    PROGRESS HEADER
+    ============================================
+    This section displays the overall onboarding progress
+    and provides navigation between different steps
+    -->
+    <header class="progress-container bg-slate-900/80">
+        <div class="container mx-auto px-6 py-4">
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-700 rounded-full h-1 mb-4">
+                <div id="main-progress-bar" class="progress-bar w-0"></div>
+            </div>
+            
+            <!-- Step Indicators -->
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-xl font-bold">CeFi/DeFi Onboarding</h1>
+                    <span id="current-step-text" class="text-slate-400">Step 1 of 6</span>
+                </div>
+                
+                <div class="flex items-center space-x-3">
+                    <div class="step-indicator active" data-step="1">
+                        <span class="sr-only">Step 1: Welcome</span>
+                        1
+                    </div>
+                    <div class="w-8 h-0.5 bg-slate-600"></div>
+                    <div class="step-indicator" data-step="2">
+                        <span class="sr-only">Step 2: Platform Choice</span>
+                        2
+                    </div>
+                    <div class="w-8 h-0.5 bg-slate-600"></div>
+                    <div class="step-indicator" data-step="3">
+                        <span class="sr-only">Step 3: Account Setup</span>
+                        3
+                    </div>
+                    <div class="w-8 h-0.5 bg-slate-600"></div>
+                    <div class="step-indicator" data-step="4">
+                        <span class="sr-only">Step 4: Security Setup</span>
+                        4
+                    </div>
+                    <div class="w-8 h-0.5 bg-slate-600"></div>
+                    <div class="step-indicator" data-step="5">
+                        <span class="sr-only">Step 5: Trading Basics</span>
+                        5
+                    </div>
+                    <div class="w-8 h-0.5 bg-slate-600"></div>
+                    <div class="step-indicator" data-step="6">
+                        <span class="sr-only">Step 6: Complete</span>
+                        6
+                    </div>
+                </div>
+                
+                <button id="help-button" class="btn btn-secondary text-sm">
+                    <i class="fas fa-question-circle mr-2"></i>
+                    Help
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 
+    ============================================
+    MAIN ONBOARDING CONTENT
+    ============================================
+    -->
+    <main class="container mx-auto px-6 py-8 max-w-4xl">
+        
+        <!-- 
+        ============================================
+        STEP 1: WELCOME & INTRODUCTION
+        ============================================
+        -->
+        <section id="step-1" class="onboarding-step active">
+            <div class="onboarding-card text-center">
+                <div class="mb-8">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-rocket text-3xl text-white"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4">Welcome to the Future of Finance</h2>
+                    <p class="text-xl text-slate-300 mb-6">
+                        Your comprehensive guide to CeFi and DeFi platforms. 
+                        We'll help you understand, setup, and start trading with confidence.
+                    </p>
+                </div>
+
+                <!-- Video Placeholder: Welcome Introduction -->
+                <div class="video-placeholder mb-8 cursor-pointer" onclick="playVideo('welcome')">
+                    <div class="text-center">
+                        <div class="play-button mb-4"></div>
+                        <h3 class="text-lg font-semibold mb-2">Introduction Video</h3>
+                        <p class="text-slate-400 text-sm">
+                            <!-- VIDEO SCRIPT PLACEHOLDER -->
+                            <strong>Script:</strong> "Welcome to your journey into decentralized and centralized finance. 
+                            In the next 5 minutes, we'll explain what CeFi and DeFi are, why they matter, 
+                            and how this onboarding will prepare you for success."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Key Benefits Grid -->
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="text-center">
+                        <div class="w-12 h-12 mx-auto mb-3 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-shield-alt text-blue-600"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Secure Setup</h3>
+                        <p class="text-sm text-slate-400">Learn industry-standard security practices</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-12 h-12 mx-auto mb-3 bg-green-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-green-600"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Expert Guidance</h3>
+                        <p class="text-sm text-slate-400">Step-by-step tutorials from professionals</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-12 h-12 mx-auto mb-3 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-chart-line text-purple-600"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Trading Ready</h3>
+                        <p class="text-sm text-slate-400">Complete preparation for live trading</p>
+                    </div>
+                </div>
+
+                <!-- Onboarding Checklist Preview -->
+                <div class="bg-slate-800 rounded-lg p-6 mb-8">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center">
+                        <i class="fas fa-list-check mr-2 text-blue-400"></i>
+                        What You'll Learn
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-4 text-left">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                            <span>CeFi vs DeFi: Key differences and use cases</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                            <span>Account setup and verification process</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                            <span>Advanced security: 2FA, hardware wallets</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                            <span>Trading fundamentals and risk management</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                            <span>Platform navigation and tools</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                            <span>Best practices and common pitfalls</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="btn btn-primary" onclick="nextStep()">
+                        <i class="fas fa-play mr-2"></i>
+                        Start Onboarding
+                    </button>
+                    <button class="btn btn-secondary" onclick="showModal('overview-modal')">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Quick Overview
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+        ============================================
+        STEP 2: PLATFORM CHOICE (CeFi vs DeFi)
+        ============================================
+        -->
+        <section id="step-2" class="onboarding-step">
+            <div class="onboarding-card">
+                <h2 class="text-2xl font-bold mb-6 text-center">Choose Your Financial Ecosystem</h2>
+                
+                <!-- Video Placeholder: CeFi vs DeFi Explanation -->
+                <div class="video-placeholder mb-8 cursor-pointer" onclick="playVideo('cefi-vs-defi')">
+                    <div class="text-center">
+                        <div class="play-button mb-4"></div>
+                        <h3 class="text-lg font-semibold mb-2">CeFi vs DeFi: Complete Guide</h3>
+                        <p class="text-slate-400 text-sm">
+                            <!-- VIDEO SCRIPT PLACEHOLDER -->
+                            <strong>Script:</strong> "Understanding the fundamental differences between Centralized Finance (CeFi) 
+                            and Decentralized Finance (DeFi). We'll cover custody, control, fees, user experience, 
+                            and help you decide which approach fits your needs."
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <!-- CeFi Option -->
+                    <div class="platform-choice border-2 border-slate-600 rounded-lg p-6 hover:border-blue-500 transition-all duration-300 cursor-pointer" data-platform="cefi" onclick="selectPlatform('cefi')">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-building text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold">CeFi (Centralized Finance)</h3>
+                                <p class="text-slate-400">Traditional exchange experience</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-green-400">
+                                <i class="fas fa-check w-4 mr-2"></i>
+                                <span>User-friendly interface</span>
+                            </div>
+                            <div class="flex items-center text-green-400">
+                                <i class="fas fa-check w-4 mr-2"></i>
+                                <span>Customer support</span>
+                            </div>
+                            <div class="flex items-center text-green-400">
+                                <i class="fas fa-check w-4 mr-2"></i>
+                                <span>Regulatory compliance</span>
+                            </div>
+                            <div class="flex items-center text-green-400">
+                                <i class="fas fa-check w-4 mr-2"></i>
+                                <span>Fiat on/off ramps</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-center text-orange-400">
+                                <i class="fas fa-exclamation-triangle w-4 mr-2"></i>
+                                <span class="text-sm">Requires identity verification</span>
+                            </div>
+                            <div class="flex items-center text-orange-400">
+                                <i class="fas fa-exclamation-triangle w-4 mr-2"></i>
+                                <span class="text-sm">Platform controls your funds</span>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary w-full">Choose CeFi</button>
+                    </div>
+
+                    <!-- DeFi Option -->
+                    <div class="platform-choice border-2 border-slate-600 rounded-lg p-6 hover:border-purple-500 transition-all duration-300 cursor-pointer" data-platform="defi" onclick="selectPlatform('defi')">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-network-wired text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold">DeFi (Decentralized Finance)</h3>
+                                <p class="text-slate-400">Blockchain-based protocols</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-green-400">
+                                <i class="fas fa-check w-4 mr-2"></i>
+                                <span>Full control of funds</span>
+                            </div>
+                            <div class="flex items-center text-green-400">
+                                <i class="fas fa-check w-4 mr-2"></i>
+                                <span>No KYC requirements</span>
+                            </div>
+                            <div class="flex items-center text-green-400">
+                                <i class="fas fa-check w-4 mr-2"></i>
+                                <span>Transparent & open-source</span>
+                            </div>
+                            <div class="flex items-center text-green-400">
+                                <i class="fas fa-check w-4 mr-2"></i>
+                                <span>24/7 global access</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-center text-orange-400">
+                                <i class="fas fa-exclamation-triangle w-4 mr-2"></i>
+                                <span class="text-sm">Requires technical knowledge</span>
+                            </div>
+                            <div class="flex items-center text-orange-400">
+                                <i class="fas fa-exclamation-triangle w-4 mr-2"></i>
+                                <span class="text-sm">Self-custody responsibility</span>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary w-full">Choose DeFi</button>
+                    </div>
+                </div>
+
+                <!-- Decision Help -->
+                <div class="bg-slate-800 rounded-lg p-6 mb-8">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center">
+                        <i class="fas fa-lightbulb mr-2 text-yellow-400"></i>
+                        Need Help Deciding?
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-blue-400 mb-2">Choose CeFi if you:</h4>
+                            <ul class="space-y-1 text-sm text-slate-300">
+                                <li>• Are new to cryptocurrency</li>
+                                <li>• Want customer support</li>
+                                <li>• Need to buy crypto with fiat</li>
+                                <li>• Prefer simplicity over control</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-purple-400 mb-2">Choose DeFi if you:</h4>
+                            <ul class="space-y-1 text-sm text-slate-300">
+                                <li>• Want full control of your funds</li>
+                                <li>• Value privacy and anonymity</li>
+                                <li>• Are comfortable with technology</li>
+                                <li>• Already own cryptocurrency</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between">
+                    <button class="btn btn-secondary" onclick="prevStep()">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        Previous
+                    </button>
+                    <button id="platform-continue" class="btn btn-primary opacity-50 cursor-not-allowed" disabled onclick="nextStep()">
+                        Continue
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+        ============================================
+        STEP 3: ACCOUNT SETUP
+        ============================================
+        -->
+        <section id="step-3" class="onboarding-step">
+            <div class="onboarding-card">
+                <h2 class="text-2xl font-bold mb-6 text-center">Account Setup & Verification</h2>
+                
+                <!-- Dynamic content based on platform choice -->
+                <div id="cefi-setup" class="platform-setup hidden">
+                    <!-- Video Placeholder: CeFi Account Setup -->
+                    <div class="video-placeholder mb-8 cursor-pointer" onclick="playVideo('cefi-setup')">
+                        <div class="text-center">
+                            <div class="play-button mb-4"></div>
+                            <h3 class="text-lg font-semibold mb-2">CeFi Account Setup Guide</h3>
+                            <p class="text-slate-400 text-sm">
+                                <!-- VIDEO SCRIPT PLACEHOLDER -->
+                                <strong>Script:</strong> "Step-by-step walkthrough of creating accounts on major CeFi platforms 
+                                like Coinbase, Binance, or Kraken. We'll cover registration, identity verification, 
+                                and initial security setup."
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Platform Selection -->
+                        <div class="form-group">
+                            <label class="block text-sm font-semibold mb-2">Choose Your CeFi Platform</label>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="platform-option border-2 border-slate-600 rounded-lg p-4 hover:border-blue-500 transition-all cursor-pointer" data-platform="coinbase" onclick="selectCeFiPlatform('coinbase')">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-8 h-8 bg-blue-500 rounded mr-3"></div>
+                                        <span class="font-semibold">Coinbase</span>
+                                    </div>
+                                    <p class="text-xs text-slate-400">Best for beginners</p>
+                                </div>
+                                <div class="platform-option border-2 border-slate-600 rounded-lg p-4 hover:border-yellow-500 transition-all cursor-pointer" data-platform="binance" onclick="selectCeFiPlatform('binance')">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-8 h-8 bg-yellow-500 rounded mr-3"></div>
+                                        <span class="font-semibold">Binance</span>
+                                    </div>
+                                    <p class="text-xs text-slate-400">Advanced features</p>
+                                </div>
+                                <div class="platform-option border-2 border-slate-600 rounded-lg p-4 hover:border-purple-500 transition-all cursor-pointer" data-platform="kraken" onclick="selectCeFiPlatform('kraken')">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-8 h-8 bg-purple-500 rounded mr-3"></div>
+                                        <span class="font-semibold">Kraken</span>
+                                    </div>
+                                    <p class="text-xs text-slate-400">Security focused</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Account Setup Checklist -->
+                        <div class="bg-slate-800 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold mb-4 flex items-center">
+                                <i class="fas fa-list-check mr-2 text-blue-400"></i>
+                                CeFi Account Setup Checklist
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="checklist-item flex items-center p-3 bg-slate-700 rounded-lg">
+                                    <input type="checkbox" id="cefi-email" class="w-5 h-5 text-blue-500 rounded mr-3" onchange="updateSetupProgress()">
+                                    <label for="cefi-email" class="flex-1">
+                                        <span class="font-medium">Email Registration</span>
+                                        <p class="text-sm text-slate-400">Create account with valid email address</p>
+                                    </label>
+                                    <div class="tooltip-trigger">
+                                        <i class="fas fa-info-circle text-blue-400"></i>
+                                        <div class="tooltip">Use a secure email provider and unique password</div>
+                                    </div>
+                                </div>
+
+                                <div class="checklist-item flex items-center p-3 bg-slate-700 rounded-lg">
+                                    <input type="checkbox" id="cefi-kyc" class="w-5 h-5 text-blue-500 rounded mr-3" onchange="updateSetupProgress()">
+                                    <label for="cefi-kyc" class="flex-1">
+                                        <span class="font-medium">Identity Verification (KYC)</span>
+                                        <p class="text-sm text-slate-400">Upload government ID and complete verification</p>
+                                    </label>
+                                    <div class="tooltip-trigger">
+                                        <i class="fas fa-info-circle text-blue-400"></i>
+                                        <div class="tooltip">Required for regulatory compliance and higher limits</div>
+                                    </div>
+                                </div>
+
+                                <div class="checklist-item flex items-center p-3 bg-slate-700 rounded-lg">
+                                    <input type="checkbox" id="cefi-bank" class="w-5 h-5 text-blue-500 rounded mr-3" onchange="updateSetupProgress()">
+                                    <label for="cefi-bank" class="flex-1">
+                                        <span class="font-medium">Payment Method</span>
+                                        <p class="text-sm text-slate-400">Link bank account or payment card</p>
+                                    </label>
+                                    <div class="tooltip-trigger">
+                                        <i class="fas fa-info-circle text-blue-400"></i>
+                                        <div class="tooltip">Start with small amounts to test the connection</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="defi-setup" class="platform-setup hidden">
+                    <!-- Video Placeholder: DeFi Wallet Setup -->
+                    <div class="video-placeholder mb-8 cursor-pointer" onclick="playVideo('defi-setup')">
+                        <div class="text-center">
+                            <div class="play-button mb-4"></div>
+                            <h3 class="text-lg font-semibold mb-2">DeFi Wallet Setup Guide</h3>
+                            <p class="text-slate-400 text-sm">
+                                <!-- VIDEO SCRIPT PLACEHOLDER -->
+                                <strong>Script:</strong> "Complete guide to setting up MetaMask, connecting to different networks, 
+                                and understanding wallet security. We'll cover seed phrases, private keys, 
+                                and best practices for DeFi interaction."
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Wallet Selection -->
+                        <div class="form-group">
+                            <label class="block text-sm font-semibold mb-2">Choose Your Wallet</label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="platform-option border-2 border-slate-600 rounded-lg p-4 hover:border-orange-500 transition-all cursor-pointer" data-wallet="metamask" onclick="selectDeFiWallet('metamask')">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-8 h-8 bg-orange-500 rounded mr-3"></div>
+                                        <span class="font-semibold">MetaMask</span>
+                                    </div>
+                                    <p class="text-xs text-slate-400">Most popular browser wallet</p>
+                                </div>
+                                <div class="platform-option border-2 border-slate-600 rounded-lg p-4 hover:border-blue-500 transition-all cursor-pointer" data-wallet="walletconnect" onclick="selectDeFiWallet('walletconnect')">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-8 h-8 bg-blue-500 rounded mr-3"></div>
+                                        <span class="font-semibold">WalletConnect</span>
+                                    </div>
+                                    <p class="text-xs text-slate-400">Mobile wallet integration</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DeFi Setup Checklist -->
+                        <div class="bg-slate-800 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold mb-4 flex items-center">
+                                <i class="fas fa-list-check mr-2 text-purple-400"></i>
+                                DeFi Wallet Setup Checklist
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="checklist-item flex items-center p-3 bg-slate-700 rounded-lg">
+                                    <input type="checkbox" id="defi-install" class="w-5 h-5 text-purple-500 rounded mr-3" onchange="updateSetupProgress()">
+                                    <label for="defi-install" class="flex-1">
+                                        <span class="font-medium">Install Wallet Extension</span>
+                                        <p class="text-sm text-slate-400">Download from official website only</p>
+                                    </label>
+                                    <div class="tooltip-trigger">
+                                        <i class="fas fa-info-circle text-purple-400"></i>
+                                        <div class="tooltip">Verify the official website URL before downloading</div>
+                                    </div>
+                                </div>
+
+                                <div class="checklist-item flex items-center p-3 bg-slate-700 rounded-lg">
+                                    <input type="checkbox" id="defi-seed" class="w-5 h-5 text-purple-500 rounded mr-3" onchange="updateSetupProgress()">
+                                    <label for="defi-seed" class="flex-1">
+                                        <span class="font-medium">Secure Seed Phrase</span>
+                                        <p class="text-sm text-slate-400">Write down and store securely offline</p>
+                                    </label>
+                                    <div class="tooltip-trigger">
+                                        <i class="fas fa-info-circle text-purple-400"></i>
+                                        <div class="tooltip">Never share or store digitally. This is your wallet recovery key.</div>
+                                    </div>
+                                </div>
+
+                                <div class="checklist-item flex items-center p-3 bg-slate-700 rounded-lg">
+                                    <input type="checkbox" id="defi-network" class="w-5 h-5 text-purple-500 rounded mr-3" onchange="updateSetupProgress()">
+                                    <label for="defi-network" class="flex-1">
+                                        <span class="font-medium">Configure Networks</span>
+                                        <p class="text-sm text-slate-400">Add Ethereum, Polygon, BSC networks</p>
+                                    </label>
+                                    <div class="tooltip-trigger">
+                                        <i class="fas fa-info-circle text-purple-400"></i>
+                                        <div class="tooltip">Different networks have different tokens and fees</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between mt-8">
+                    <button class="btn btn-secondary" onclick="prevStep()">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        Previous
+                    </button>
+                    <button id="setup-continue" class="btn btn-primary opacity-50 cursor-not-allowed" disabled onclick="nextStep()">
+                        Continue
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+        ============================================
+        STEP 4: SECURITY SETUP
+        ============================================
+        -->
+        <section id="step-4" class="onboarding-step">
+            <div class="onboarding-card">
+                <h2 class="text-2xl font-bold mb-6 text-center">Security & Verification Setup</h2>
+                
+                <!-- Video Placeholder: Security Best Practices -->
+                <div class="video-placeholder mb-8 cursor-pointer" onclick="playVideo('security')">
+                    <div class="text-center">
+                        <div class="play-button mb-4"></div>
+                        <h3 class="text-lg font-semibold mb-2">Security Best Practices</h3>
+                        <p class="text-slate-400 text-sm">
+                            <!-- VIDEO SCRIPT PLACEHOLDER -->
+                            <strong>Script:</strong> "Comprehensive security guide covering 2FA setup, password managers, 
+                            hardware wallets, phishing protection, and secure backup strategies. 
+                            Essential knowledge for protecting your digital assets."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Email Verification Simulation -->
+                <div class="bg-slate-800 rounded-lg p-6 mb-8">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center">
+                        <i class="fas fa-envelope mr-2 text-blue-400"></i>
+                        Email Verification
+                    </h3>
+                    <div class="form-group">
+                        <label for="email-input" class="block text-sm font-medium mb-2">Email Address</label>
+                        <input type="email" id="email-input" class="form-input" placeholder="Enter your email address" onblur="validateEmail()">
+                        <div id="email-validation" class="validation-message"></div>
+                    </div>
+                    <button id="send-verification" class="btn btn-primary mt-4" onclick="simulateEmailVerification()">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        Send Verification Email
+                    </button>
+                    <div id="email-verification-status" class="mt-4 p-4 bg-slate-700 rounded-lg hidden">
+                        <p class="text-green-400 mb-2">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            Verification email sent! Check your inbox.
+                        </p>
+                        <div class="flex items-center space-x-4">
+                            <input type="text" id="verification-code" class="form-input flex-1" placeholder="Enter 6-digit code" maxlength="6">
+                            <button class="btn btn-success" onclick="verifyEmail()">Verify</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2FA Setup Simulation -->
+                <div class="bg-slate-800 rounded-lg p-6 mb-8">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center">
+                        <i class="fas fa-mobile-alt mr-2 text-green-400"></i>
+                        Two-Factor Authentication (2FA)
+                    </h3>
+                    <p class="text-slate-300 mb-4">Secure your account with an additional layer of protection.</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="2fa-option border-2 border-slate-600 rounded-lg p-4 hover:border-green-500 transition-all cursor-pointer" data-2fa="app" onclick="select2FA('app')">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-mobile-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Authenticator App</h4>
+                                    <p class="text-sm text-slate-400">Recommended</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-slate-300 mb-4">Use Google Authenticator, Authy, or similar apps</p>
+                            <div class="text-center p-4 bg-slate-700 rounded">
+                                <div class="w-24 h-24 mx-auto mb-2 bg-white rounded flex items-center justify-center">
+                                    <div class="grid grid-cols-8 gap-1">
+                                        <!-- QR Code pattern simulation -->
+                                        <div class="w-1 h-1 bg-black"></div>
+                                        <div class="w-1 h-1 bg-white"></div>
+                                        <div class="w-1 h-1 bg-black"></div>
+                                        <div class="w-1 h-1 bg-black"></div>
+                                        <div class="w-1 h-1 bg-white"></div>
+                                        <div class="w-1 h-1 bg-black"></div>
+                                        <div class="w-1 h-1 bg-white"></div>
+                                        <div class="w-1 h-1 bg-black"></div>
+                                        <!-- Additional rows would continue... -->
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-400">QR Code Placeholder</p>
+                            </div>
+                        </div>
+
+                        <div class="2fa-option border-2 border-slate-600 rounded-lg p-4 hover:border-blue-500 transition-all cursor-pointer" data-2fa="sms" onclick="select2FA('sms')">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fas fa-sms text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">SMS Verification</h4>
+                                    <p class="text-sm text-slate-400">Less secure</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-slate-300 mb-4">Receive codes via text message</p>
+                            <input type="tel" id="phone-input" class="form-input" placeholder="Enter phone number">
+                        </div>
+                    </div>
+
+                    <div id="2fa-verification" class="mt-6 hidden">
+                        <label class="block text-sm font-medium mb-2">Enter 6-digit code from your authenticator app</label>
+                        <div class="flex items-center space-x-4">
+                            <input type="text" id="2fa-code" class="form-input flex-1" placeholder="000000" maxlength="6">
+                            <button class="btn btn-success" onclick="verify2FA()">Verify</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Checklist -->
+                <div class="bg-slate-800 rounded-lg p-6 mb-8">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center">
+                        <i class="fas fa-shield-alt mr-2 text-yellow-400"></i>
+                        Security Checklist
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="checklist-item flex items-center p-3 bg-slate-700 rounded-lg">
+                            <input type="checkbox" id="security-password" class="w-5 h-5 text-blue-500 rounded mr-3" onchange="updateSecurityProgress()">
+                            <label for="security-password" class="flex-1">
+                                <span class="font-medium">Strong Password</span>
+                                <p class="text-sm text-slate-400">Use unique, complex password with password manager</p>
+                            </label>
+                            <div class="tooltip-trigger">
+                                <i class="fas fa-info-circle text-blue-400"></i>
+                                <div class="tooltip">Minimum 12 characters with mix of letters, numbers, symbols</div>
+                            </div>
+                        </div>
+
+                        <div class="checklist-item flex items-center p-3 bg-slate-700 rounded-lg">
+                            <input type="checkbox" id="security-2fa" class="w-5 h-5 text-blue-500 rounded mr-3" onchange="updateSecurityProgress()">
+                            <label for="security-2fa" class="flex-1">
+                                <span class="font-medium">2FA Enabled</span>
+                                <p class="text-sm text-slate-400">Two-factor authentication activated</p>
+                            </label>
+                        </div>
+
+                        <div class="checklist-item flex items-center p-3 bg-slate-700 rounded-lg">
+                            <input type="checkbox" id="security-backup" class="w-5 h-5 text-blue-500 rounded mr-3" onchange="updateSecurityProgress()">
+                            <label for="security-backup" class="flex-1">
+                                <span class="font-medium">Backup Codes</span>
+                                <p class="text-sm text-slate-400">Downloaded and stored securely offline</p>
+                            </label>
+                            <div class="tooltip-trigger">
+                                <i class="fas fa-info-circle text-blue-400"></i>
+                                <div class="tooltip">Use these codes if you lose access to your 2FA device</div>
+                            </div>
+                        </div>
+
+                        <div class="checklist-item flex items-center p-3 bg-slate-700 rounded-lg">
+                            <input type="checkbox" id="security-hardware" class="w-5 h-5 text-blue-500 rounded mr-3" onchange="updateSecurityProgress()">
+                            <label for="security-hardware" class="flex-1">
+                                <span class="font-medium">Hardware Wallet (Optional)</span>
+                                <p class="text-sm text-slate-400">Consider Ledger or Trezor for large amounts</p>
+                            </label>
+                            <div class="tooltip-trigger">
+                                <i class="fas fa-info-circle text-blue-400"></i>
+                                <div class="tooltip">Hardware wallets provide the highest security for crypto storage</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between">
+                    <button class="btn btn-secondary" onclick="prevStep()">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        Previous
+                    </button>
+                    <button id="security-continue" class="btn btn-primary opacity-50 cursor-not-allowed" disabled onclick="nextStep()">
+                        Continue
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+        ============================================
+        STEP 5: TRADING BASICS
+        ============================================
+        -->
+        <section id="step-5" class="onboarding-step">
+            <div class="onboarding-card">
+                <h2 class="text-2xl font-bold mb-6 text-center">Trading Basics & Risk Management</h2>
+                
+                <!-- Video Placeholder: Trading Fundamentals -->
+                <div class="video-placeholder mb-8 cursor-pointer" onclick="playVideo('trading-basics')">
+                    <div class="text-center">
+                        <div class="play-button mb-4"></div>
+                        <h3 class="text-lg font-semibold mb-2">Trading Fundamentals</h3>
+                        <p class="text-slate-400 text-sm">
+                            <!-- VIDEO SCRIPT PLACEHOLDER -->
+                            <strong>Script:</strong> "Learn the fundamentals of cryptocurrency trading including order types, 
+                            market analysis, risk management, and position sizing. Essential knowledge for both 
+                            beginners and intermediate traders."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Trading Concepts Grid -->
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <!-- Order Types -->
+                    <div class="bg-slate-800 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold mb-4 flex items-center">
+                            <i class="fas fa-chart-line mr-2 text-green-400"></i>
+                            Order Types
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="border border-slate-600 rounded-lg p-4">
+                                <h4 class="font-semibold text-green-400 mb-2">Market Order</h4>
+                                <p class="text-sm text-slate-300 mb-2">Buy/sell immediately at current market price</p>
+                                <div class="tooltip-trigger">
+                                    <span class="text-xs text-blue-400 cursor-help">Learn more</span>
+                                    <div class="tooltip">Executes instantly but price may vary due to slippage</div>
+                                </div>
+                            </div>
+                            <div class="border border-slate-600 rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-400 mb-2">Limit Order</h4>
+                                <p class="text-sm text-slate-300 mb-2">Buy/sell at specific price or better</p>
+                                <div class="tooltip-trigger">
+                                    <span class="text-xs text-blue-400 cursor-help">Learn more</span>
+                                    <div class="tooltip">May not execute if price doesn't reach your limit</div>
+                                </div>
+                            </div>
+                            <div class="border border-slate-600 rounded-lg p-4">
+                                <h4 class="font-semibold text-orange-400 mb-2">Stop-Loss Order</h4>
+                                <p class="text-sm text-slate-300 mb-2">Automatically sell if price drops to limit losses</p>
+                                <div class="tooltip-trigger">
+                                    <span class="text-xs text-blue-400 cursor-help">Learn more</span>
+                                    <div class="tooltip">Essential for risk management and capital preservation</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Risk Management -->
+                    <div class="bg-slate-800 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold mb-4 flex items-center">
+                            <i class="fas fa-shield-alt mr-2 text-red-400"></i>
+                            Risk Management
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="border border-slate-600 rounded-lg p-4">
+                                <h4 class="font-semibold text-purple-400 mb-2">Position Sizing</h4>
+                                <p class="text-sm text-slate-300 mb-2">Never risk more than 1-2% of portfolio per trade</p>
+                                <div class="bg-slate-700 rounded p-2 text-xs">
+                                    Example: $10,000 portfolio → Max $200 per trade
+                                </div>
+                            </div>
+                            <div class="border border-slate-600 rounded-lg p-4">
+                                <h4 class="font-semibold text-yellow-400 mb-2">Diversification</h4>
+                                <p class="text-sm text-slate-300 mb-2">Spread risk across multiple assets and strategies</p>
+                            </div>
+                            <div class="border border-slate-600 rounded-lg p-4">
+                                <h4 class="font-semibold text-red-400 mb-2">Stop-Loss Strategy</h4>
+                                <p class="text-sm text-slate-300 mb-2">Always set stop-loss before entering position</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Risk Calculator -->
+                <div class="bg-slate-800 rounded-lg p-6 mb-8">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center">
+                        <i class="fas fa-calculator mr-2 text-blue-400"></i>
+                        Risk Calculator
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-4 mb-4">
+                        <div class="form-group">
+                            <label class="block text-sm font-medium mb-2">Portfolio Value ($)</label>
+                            <input type="number" id="portfolio-value" class="form-input" placeholder="10000" onchange="calculateRisk()">
+                        </div>
+                        <div class="form-group">
+                            <label class="block text-sm font-medium mb-2">Risk per Trade (%)</label>
+                            <input type="number" id="risk-percent" class="form-input" placeholder="2" min="0.1" max="10" step="0.1" onchange="calculateRisk()">
+                        </div>
+                        <div class="form-group">
+                            <label class="block text-sm font-medium mb-2">Entry Price ($)</label>
+                            <input type="number" id="entry-price" class="form-input" placeholder="50000" onchange="calculateRisk()">
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-4 mb-4">
+                        <div class="form-group">
+                            <label class="block text-sm font-medium mb-2">Stop-Loss Price ($)</label>
+                            <input type="number" id="stop-loss-price" class="form-input" placeholder="48000" onchange="calculateRisk()">
+                        </div>
+                        <div class="bg-slate-700 rounded-lg p-4">
+                            <label class="block text-sm font-medium mb-2">Max Position Size</label>
+                            <div id="position-size" class="text-lg font-bold text-green-400">Calculate above</div>
+                        </div>
+                        <div class="bg-slate-700 rounded-lg p-4">
+                            <label class="block text-sm font-medium mb-2">Max Loss if Stopped</label>
+                            <div id="max-loss" class="text-lg font-bold text-red-400">Calculate above</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trading Knowledge Checklist -->
+                <div class="bg-slate-800 rounded-lg p-6 mb-8">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center">
+                        <i class="fas fa-graduation-cap mr-2 text-purple-400"></i>
+                        Trading Knowledge Checklist
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="checklist-item flex items-center p-3 bg-slate-700 rounded-lg">
+                            <input type="checkbox" id="trading-orders" class="w-5 h-5 text-blue-500 rounded mr-3" onchange="updateTradingProgress()">
+                            <label for="trading-orders" class="flex-1">
+                                <span class="font-medium">Understanding Order Types</span>
+                                <p class="text-sm text-slate-400">Market, limit, stop-loss orders and their uses</p>
+                            </label>
+                        </div>
+
+                        <div class="checklist-item flex items-center p-3 bg-slate-700 rounded-lg">
+                            <input type="checkbox" id="trading-risk" class="w-5 h-5 text-blue-500 rounded mr-3" onchange="updateTradingProgress()">
+                            <label for="trading-risk" class="flex-1">
+                                <span class="font-medium">Risk Management Rules</span>
+                                <p class="text-sm text-slate-400">Position sizing and stop-loss strategies</p>
+                            </label>
+                        </div>
+
+                        <div class="checklist-item flex items-center p-3 bg-slate-700 rounded-lg">
+                            <input type="checkbox" id="trading-analysis" class="w-5 h-5 text-blue-500 rounded mr-3" onchange="updateTradingProgress()">
+                            <label for="trading-analysis" class="flex-1">
+                                <span class="font-medium">Basic Analysis</span>
+                                <p class="text-sm text-slate-400">Chart reading and fundamental analysis basics</p>
+                            </label>
+                        </div>
+
+                        <div class="checklist-item flex items-center p-3 bg-slate-700 rounded-lg">
+                            <input type="checkbox" id="trading-psychology" class="w-5 h-5 text-blue-500 rounded mr-3" onchange="updateTradingProgress()">
+                            <label for="trading-psychology" class="flex-1">
+                                <span class="font-medium">Trading Psychology</span>
+                                <p class="text-sm text-slate-400">Emotional control and discipline</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between">
+                    <button class="btn btn-secondary" onclick="prevStep()">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        Previous
+                    </button>
+                    <button id="trading-continue" class="btn btn-primary opacity-50 cursor-not-allowed" disabled onclick="nextStep()">
+                        Complete Setup
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+        ============================================
+        STEP 6: COMPLETION & CELEBRATION
+        ============================================
+        -->
+        <section id="step-6" class="onboarding-step">
+            <div class="onboarding-card text-center">
+                <div class="mb-8">
+                    <div class="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-trophy text-4xl text-white"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4">Congratulations! 🎉</h2>
+                    <p class="text-xl text-slate-300 mb-6">
+                        You've successfully completed the CeFi/DeFi onboarding process. 
+                        You're now ready to start your trading journey!
+                    </p>
+                </div>
+
+                <!-- Achievement Summary -->
+                <div class="bg-gradient-to-r from-blue-500/20 to-purple-600/20 rounded-lg p-6 mb-8">
+                    <h3 class="text-lg font-semibold mb-4">Your Achievements</h3>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto mb-3 bg-blue-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-check text-2xl text-white"></i>
+                            </div>
+                            <h4 class="font-semibold mb-1">Platform Chosen</h4>
+                            <p class="text-sm text-slate-400" id="chosen-platform">CeFi/DeFi Selected</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto mb-3 bg-green-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-2xl text-white"></i>
+                            </div>
+                            <h4 class="font-semibold mb-1">Security Setup</h4>
+                            <p class="text-sm text-slate-400">2FA & Backups Complete</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto mb-3 bg-purple-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-graduation-cap text-2xl text-white"></i>
+                            </div>
+                            <h4 class="font-semibold mb-1">Trading Ready</h4>
+                            <p class="text-sm text-slate-400">Knowledge Verified</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Next Steps -->
+                <div class="bg-slate-800 rounded-lg p-6 mb-8 text-left">
+                    <h3 class="text-lg font-semibold mb-4 text-center">What's Next?</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center p-3 bg-slate-700 rounded-lg">
+                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-3 text-white font-bold">1</div>
+                            <div>
+                                <span class="font-medium">Start with Paper Trading</span>
+                                <p class="text-sm text-slate-400">Practice with virtual money before going live</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-3 bg-slate-700 rounded-lg">
+                            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-3 text-white font-bold">2</div>
+                            <div>
+                                <span class="font-medium">Make Your First Small Trade</span>
+                                <p class="text-sm text-slate-400">Start with small amounts to gain experience</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-3 bg-slate-700 rounded-lg">
+                            <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center mr-3 text-white font-bold">3</div>
+                            <div>
+                                <span class="font-medium">Continue Learning</span>
+                                <p class="text-sm text-slate-400">Join communities and keep educating yourself</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="btn btn-primary" onclick="restartOnboarding()">
+                        <i class="fas fa-redo mr-2"></i>
+                        Start Over
+                    </button>
+                    <button class="btn btn-success" onclick="showCelebration()">
+                        <i class="fas fa-star mr-2"></i>
+                        Celebrate Success!
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 
+    ============================================
+    MODAL OVERLAYS
+    ============================================
+    -->
+    
+    <!-- Quick Overview Modal -->
+    <div id="overview-modal" class="celebration-modal">
+        <div class="celebration-content">
+            <h3 class="text-2xl font-bold mb-4">Quick Overview</h3>
+            <div class="text-left space-y-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">1</div>
+                    <span>Choose between CeFi (exchanges) or DeFi (wallets)</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">2</div>
+                    <span>Set up your account and complete verification</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold">3</div>
+                    <span>Enable security features like 2FA</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold">4</div>
+                    <span>Learn trading basics and risk management</span>
+                </div>
+            </div>
+            <button class="btn btn-primary mt-6" onclick="hideModal('overview-modal')">
+                Got it!
+            </button>
+        </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div id="help-modal" class="celebration-modal">
+        <div class="celebration-content">
+            <h3 class="text-2xl font-bold mb-4">Need Help?</h3>
+            <div class="text-left space-y-4">
+                <div>
+                    <h4 class="font-semibold text-blue-400 mb-2">Common Questions</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><strong>Q:</strong> What's the difference between CeFi and DeFi?</li>
+                        <li><strong>A:</strong> CeFi platforms are centralized (like traditional exchanges), while DeFi uses decentralized protocols.</li>
+                        <li><strong>Q:</strong> Is it safe to store crypto on exchanges?</li>
+                        <li><strong>A:</strong> For small amounts, reputable exchanges are generally safe. For larger amounts, consider hardware wallets.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-green-400 mb-2">Contact Support</h4>
+                    <p class="text-sm">If you need additional help, reach out to our support team or visit our documentation.</p>
+                </div>
+            </div>
+            <button class="btn btn-primary mt-6" onclick="hideModal('help-modal')">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Celebration Modal -->
+    <div id="celebration-modal" class="celebration-modal">
+        <div class="celebration-content">
+            <div class="text-6xl mb-4">🎉</div>
+            <h3 class="text-2xl font-bold mb-4">Amazing Work!</h3>
+            <p class="mb-6">You've successfully completed the entire onboarding process. Welcome to the world of cryptocurrency trading!</p>
+            <div class="mb-6">
+                <div class="text-4xl mb-2">🏆</div>
+                <div class="text-lg font-semibold text-yellow-400">Crypto Trading Champion</div>
+                <div class="text-sm text-slate-400">Completed full onboarding process</div>
+            </div>
+            <button class="btn btn-primary" onclick="hideModal('celebration-modal')">
+                Awesome!
+            </button>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="celebration-modal">
+        <div class="celebration-content max-w-4xl">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="video-title" class="text-2xl font-bold">Video Title</h3>
+                <button onclick="hideModal('video-modal')" class="text-slate-400 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="video-placeholder mb-4" style="aspect-ratio: 16/9; height: auto;">
+                <div class="text-center">
+                    <div class="play-button mb-4"></div>
+                    <h4 class="text-lg font-semibold mb-2">Video Content Placeholder</h4>
+                    <p id="video-script" class="text-slate-400 text-sm">Video script will appear here...</p>
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary" onclick="hideModal('video-modal')">
+                    Continue Learning
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!--
+    ============================================
+    JAVASCRIPT FOR ONBOARDING FUNCTIONALITY
+    ============================================
+    
+    This section contains all the interactive functionality for the onboarding experience.
+    It includes step navigation, progress tracking, form validation, and user interactions.
+    
+    Integration Notes:
+    - All functions are designed to be modular and easily extensible
+    - Progress data is saved to localStorage for persistence
+    - Event handlers can be easily modified for different platforms
+    - Validation logic can be customized for specific requirements
+    
+    For production integration:
+    1. Replace localStorage with your backend API calls
+    2. Add real video content instead of placeholders
+    3. Integrate with actual platform APIs (MetaMask, exchange APIs, etc.)
+    4. Add real email verification and 2FA workflows
+    5. Customize branding and styling as needed
+    
+    Gamification opportunities:
+    - Add achievement points for each completed step
+    - Implement streak counters for daily learning
+    - Create leaderboards for community engagement
+    - Add badge systems for different skills mastered
+    - Implement progress sharing to social media
+    
+    Personalization opportunities:
+    - Save user preferences and resume where they left off
+    - Recommend content based on chosen platform (CeFi/DeFi)
+    - Customize difficulty based on experience level
+    - Provide personalized tips based on progress patterns
+    -->
+    <script>
+        // 
+        // ============================================
+        // ONBOARDING STATE MANAGEMENT
+        // ============================================
+        // 
+        
+        let currentStep = 1;
+        const totalSteps = 6;
+        let selectedPlatform = null;
+        let onboardingProgress = {
+            step: 1,
+            platform: null,
+            setupComplete: false,
+            securityComplete: false,
+            tradingComplete: false,
+            emailVerified: false,
+            twoFAEnabled: false
+        };
+
+        // Load progress from localStorage on page load
+        function loadProgress() {
+            const saved = localStorage.getItem('onboarding_progress');
+            if (saved) {
+                onboardingProgress = { ...onboardingProgress, ...JSON.parse(saved) };
+                currentStep = onboardingProgress.step;
+                selectedPlatform = onboardingProgress.platform;
+                updateProgressDisplay();
+            }
+        }
+
+        // Save progress to localStorage
+        function saveProgress() {
+            onboardingProgress.step = currentStep;
+            onboardingProgress.platform = selectedPlatform;
+            localStorage.setItem('onboarding_progress', JSON.stringify(onboardingProgress));
+        }
+
+        // 
+        // ============================================
+        // STEP NAVIGATION FUNCTIONS
+        // ============================================
+        // 
+        
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                // Hide current step
+                document.getElementById(`step-${currentStep}`).classList.remove('active');
+                
+                // Mark current step as completed
+                const stepIndicator = document.querySelector(`[data-step="${currentStep}"]`);
+                stepIndicator.classList.remove('active');
+                stepIndicator.classList.add('completed');
+                
+                // Move to next step
+                currentStep++;
+                showStep(currentStep);
+                
+                // Save progress
+                saveProgress();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                // Hide current step
+                document.getElementById(`step-${currentStep}`).classList.remove('active');
+                
+                // Remove active state from current step indicator
+                const currentIndicator = document.querySelector(`[data-step="${currentStep}"]`);
+                currentIndicator.classList.remove('active');
+                
+                // Move to previous step
+                currentStep--;
+                showStep(currentStep);
+                
+                // Update previous step indicator
+                const prevIndicator = document.querySelector(`[data-step="${currentStep}"]`);
+                prevIndicator.classList.remove('completed');
+                prevIndicator.classList.add('active');
+                
+                // Save progress
+                saveProgress();
+            }
+        }
+
+        function showStep(stepNumber) {
+            // Hide all steps
+            document.querySelectorAll('.onboarding-step').forEach(step => {
+                step.classList.remove('active');
+            });
+            
+            // Show target step
+            document.getElementById(`step-${stepNumber}`).classList.add('active');
+            
+            // Update step indicator
+            document.querySelectorAll('.step-indicator').forEach(indicator => {
+                indicator.classList.remove('active');
+            });
+            document.querySelector(`[data-step="${stepNumber}"]`).classList.add('active');
+            
+            // Update progress bar and text
+            updateProgressDisplay();
+            
+            // Handle step-specific logic
+            handleStepSpecificLogic(stepNumber);
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function handleStepSpecificLogic(stepNumber) {
+            switch(stepNumber) {
+                case 3:
+                    // Show appropriate setup content based on platform choice
+                    if (selectedPlatform === 'cefi') {
+                        document.getElementById('cefi-setup').classList.remove('hidden');
+                        document.getElementById('defi-setup').classList.add('hidden');
+                    } else if (selectedPlatform === 'defi') {
+                        document.getElementById('defi-setup').classList.remove('hidden');
+                        document.getElementById('cefi-setup').classList.add('hidden');
+                    }
+                    break;
+                case 6:
+                    // Update completion screen with chosen platform
+                    if (selectedPlatform) {
+                        document.getElementById('chosen-platform').textContent = 
+                            selectedPlatform === 'cefi' ? 'CeFi Platform' : 'DeFi Platform';
+                    }
+                    break;
+            }
+        }
+
+        function updateProgressDisplay() {
+            // Update progress bar
+            const progressPercent = (currentStep / totalSteps) * 100;
+            document.getElementById('main-progress-bar').style.width = `${progressPercent}%`;
+            
+            // Update step text
+            document.getElementById('current-step-text').textContent = `Step ${currentStep} of ${totalSteps}`;
+        }
+
+        // 
+        // ============================================
+        // PLATFORM SELECTION
+        // ============================================
+        // 
+        
+        function selectPlatform(platform) {
+            selectedPlatform = platform;
+            onboardingProgress.platform = platform;
+            
+            // Update UI
+            document.querySelectorAll('.platform-choice').forEach(choice => {
+                choice.classList.remove('selected');
+            });
+            document.querySelector(`[data-platform="${platform}"]`).classList.add('selected');
+            
+            // Enable continue button
+            const continueBtn = document.getElementById('platform-continue');
+            continueBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            continueBtn.disabled = false;
+            
+            saveProgress();
+        }
+
+        function selectCeFiPlatform(platform) {
+            // Update UI for CeFi platform selection
+            document.querySelectorAll('#cefi-setup .platform-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            document.querySelector(`#cefi-setup [data-platform="${platform}"]`).classList.add('selected');
+        }
+
+        function selectDeFiWallet(wallet) {
+            // Update UI for DeFi wallet selection
+            document.querySelectorAll('#defi-setup .platform-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            document.querySelector(`#defi-setup [data-wallet="${wallet}"]`).classList.add('selected');
+        }
+
+        // 
+        // ============================================
+        // PROGRESS TRACKING FUNCTIONS
+        // ============================================
+        // 
+        
+        function updateSetupProgress() {
+            const checkboxes = selectedPlatform === 'cefi' 
+                ? ['cefi-email', 'cefi-kyc', 'cefi-bank']
+                : ['defi-install', 'defi-seed', 'defi-network'];
+            
+            const completed = checkboxes.filter(id => document.getElementById(id)?.checked).length;
+            const isComplete = completed === checkboxes.length;
+            
+            onboardingProgress.setupComplete = isComplete;
+            
+            // Enable/disable continue button
+            const continueBtn = document.getElementById('setup-continue');
+            if (isComplete) {
+                continueBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                continueBtn.disabled = false;
+            } else {
+                continueBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                continueBtn.disabled = true;
+            }
+            
+            saveProgress();
+        }
+
+        function updateSecurityProgress() {
+            const securityCheckboxes = ['security-password', 'security-2fa', 'security-backup'];
+            const completed = securityCheckboxes.filter(id => document.getElementById(id)?.checked).length;
+            const isComplete = completed >= 2; // Require at least 2 out of 3 (hardware wallet is optional)
+            
+            onboardingProgress.securityComplete = isComplete;
+            
+            // Enable/disable continue button
+            const continueBtn = document.getElementById('security-continue');
+            if (isComplete) {
+                continueBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                continueBtn.disabled = false;
+            } else {
+                continueBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                continueBtn.disabled = true;
+            }
+            
+            saveProgress();
+        }
+
+        function updateTradingProgress() {
+            const tradingCheckboxes = ['trading-orders', 'trading-risk', 'trading-analysis', 'trading-psychology'];
+            const completed = tradingCheckboxes.filter(id => document.getElementById(id)?.checked).length;
+            const isComplete = completed === tradingCheckboxes.length;
+            
+            onboardingProgress.tradingComplete = isComplete;
+            
+            // Enable/disable continue button
+            const continueBtn = document.getElementById('trading-continue');
+            if (isComplete) {
+                continueBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                continueBtn.disabled = false;
+            } else {
+                continueBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                continueBtn.disabled = true;
+            }
+            
+            saveProgress();
+        }
+
+        // 
+        // ============================================
+        // FORM VALIDATION & VERIFICATION
+        // ============================================
+        // 
+        
+        function validateEmail() {
+            const emailInput = document.getElementById('email-input');
+            const validation = document.getElementById('email-validation');
+            const email = emailInput.value;
+            
+            if (email === '') {
+                validation.textContent = '';
+                emailInput.classList.remove('valid', 'invalid');
+                return;
+            }
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const isValid = emailRegex.test(email);
+            
+            if (isValid) {
+                emailInput.classList.remove('invalid');
+                emailInput.classList.add('valid');
+                validation.textContent = '✓ Valid email address';
+                validation.className = 'validation-message success';
+            } else {
+                emailInput.classList.remove('valid');
+                emailInput.classList.add('invalid');
+                validation.textContent = '✗ Please enter a valid email address';
+                validation.className = 'validation-message error';
+            }
+        }
+
+        function simulateEmailVerification() {
+            const emailInput = document.getElementById('email-input');
+            if (!emailInput.classList.contains('valid')) {
+                alert('Please enter a valid email address first.');
+                return;
+            }
+            
+            // Simulate sending verification email
+            document.getElementById('email-verification-status').classList.remove('hidden');
+            document.getElementById('send-verification').disabled = true;
+            document.getElementById('send-verification').textContent = 'Email Sent';
+            
+            // Generate random 6-digit code for demo
+            const code = Math.floor(100000 + Math.random() * 900000);
+            console.log(`Demo verification code: ${code}`); // In real app, this would be sent via email
+        }
+
+        function verifyEmail() {
+            const code = document.getElementById('verification-code').value;
+            
+            if (code.length !== 6) {
+                alert('Please enter a 6-digit verification code.');
+                return;
+            }
+            
+            // Simulate verification (in real app, validate against backend)
+            onboardingProgress.emailVerified = true;
+            
+            // Update UI
+            document.getElementById('email-verification-status').innerHTML = `
+                <p class="text-green-400">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    Email verified successfully!
+                </p>
+            `;
+            
+            // Auto-check security checkbox
+            document.getElementById('security-2fa').checked = true;
+            updateSecurityProgress();
+            
+            saveProgress();
+        }
+
+        function select2FA(method) {
+            // Update UI for 2FA method selection
+            document.querySelectorAll('.2fa-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            document.querySelector(`[data-2fa="${method}"]`).classList.add('selected');
+            
+            // Show verification input for authenticator app
+            if (method === 'app') {
+                document.getElementById('2fa-verification').classList.remove('hidden');
+            } else {
+                document.getElementById('2fa-verification').classList.add('hidden');
+            }
+        }
+
+        function verify2FA() {
+            const code = document.getElementById('2fa-code').value;
+            
+            if (code.length !== 6) {
+                alert('Please enter a 6-digit authentication code.');
+                return;
+            }
+            
+            // Simulate 2FA verification
+            onboardingProgress.twoFAEnabled = true;
+            
+            // Update UI
+            document.getElementById('2fa-verification').innerHTML = `
+                <div class="text-green-400 text-center">
+                    <i class="fas fa-check-circle text-2xl mb-2"></i>
+                    <p>2FA successfully enabled!</p>
+                </div>
+            `;
+            
+            // Auto-check security checkbox
+            document.getElementById('security-2fa').checked = true;
+            updateSecurityProgress();
+            
+            saveProgress();
+        }
+
+        // 
+        // ============================================
+        // RISK CALCULATOR
+        // ============================================
+        // 
+        
+        function calculateRisk() {
+            const portfolioValue = parseFloat(document.getElementById('portfolio-value').value) || 0;
+            const riskPercent = parseFloat(document.getElementById('risk-percent').value) || 0;
+            const entryPrice = parseFloat(document.getElementById('entry-price').value) || 0;
+            const stopLossPrice = parseFloat(document.getElementById('stop-loss-price').value) || 0;
+            
+            if (portfolioValue > 0 && riskPercent > 0 && entryPrice > 0 && stopLossPrice > 0) {
+                const maxRiskAmount = portfolioValue * (riskPercent / 100);
+                const priceRisk = Math.abs(entryPrice - stopLossPrice);
+                const positionSize = maxRiskAmount / priceRisk;
+                
+                document.getElementById('position-size').textContent = `$${positionSize.toFixed(2)}`;
+                document.getElementById('max-loss').textContent = `$${maxRiskAmount.toFixed(2)}`;
+            } else {
+                document.getElementById('position-size').textContent = 'Calculate above';
+                document.getElementById('max-loss').textContent = 'Calculate above';
+            }
+        }
+
+        // 
+        // ============================================
+        // VIDEO & MODAL FUNCTIONS
+        // ============================================
+        // 
+        
+        function playVideo(videoType) {
+            const modal = document.getElementById('video-modal');
+            const title = document.getElementById('video-title');
+            const script = document.getElementById('video-script');
+            
+            const videoContent = {
+                'welcome': {
+                    title: 'Welcome to CeFi/DeFi Onboarding',
+                    script: 'Welcome to your journey into decentralized and centralized finance. In the next 5 minutes, we\'ll explain what CeFi and DeFi are, why they matter, and how this onboarding will prepare you for success. You\'ll learn the key differences between centralized exchanges and decentralized protocols, understand the benefits and risks of each approach, and discover which path aligns best with your goals and experience level.'
+                },
+                'cefi-vs-defi': {
+                    title: 'CeFi vs DeFi: Complete Comparison',
+                    script: 'Understanding the fundamental differences between Centralized Finance (CeFi) and Decentralized Finance (DeFi). We\'ll cover custody models, user experience, regulatory compliance, security considerations, fees, and accessibility. This comprehensive guide will help you make an informed decision about which ecosystem best suits your needs and risk tolerance.'
+                },
+                'cefi-setup': {
+                    title: 'CeFi Account Setup Guide',
+                    script: 'Step-by-step walkthrough of creating accounts on major CeFi platforms like Coinbase, Binance, or Kraken. We\'ll cover the registration process, identity verification requirements, security setup, linking payment methods, and understanding platform fees. You\'ll also learn about regulatory compliance and what documents you\'ll need.'
+                },
+                'defi-setup': {
+                    title: 'DeFi Wallet Setup Guide',
+                    script: 'Complete guide to setting up MetaMask and other Web3 wallets, connecting to different blockchain networks, and understanding wallet security. We\'ll cover seed phrases, private keys, network configurations, and best practices for DeFi interaction. You\'ll learn how to safely store and manage your wallet recovery information.'
+                },
+                'security': {
+                    title: 'Security Best Practices',
+                    script: 'Comprehensive security guide covering 2FA setup, password managers, hardware wallets, phishing protection, and secure backup strategies. Essential knowledge for protecting your digital assets including recognizing common scams, secure communication practices, and emergency recovery procedures.'
+                },
+                'trading-basics': {
+                    title: 'Trading Fundamentals',
+                    script: 'Learn the fundamentals of cryptocurrency trading including order types (market, limit, stop-loss), market analysis basics, risk management principles, and position sizing. Essential knowledge for both beginners and intermediate traders covering technical analysis, fundamental analysis, and trading psychology.'
+                }
+            };
+            
+            const content = videoContent[videoType] || videoContent['welcome'];
+            title.textContent = content.title;
+            script.textContent = content.script;
+            
+            showModal('video-modal');
+        }
+
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function hideModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function showCelebration() {
+            showModal('celebration-modal');
+            createConfetti();
+        }
+
+        function createConfetti() {
+            const colors = ['#f59e0b', '#3b82f6', '#10b981', '#ef4444', '#8b5cf6'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                
+                document.body.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+
+        // 
+        // ============================================
+        // UTILITY FUNCTIONS
+        // ============================================
+        // 
+        
+        function restartOnboarding() {
+            if (confirm('Are you sure you want to restart the onboarding process? This will reset all your progress.')) {
+                localStorage.removeItem('onboarding_progress');
+                currentStep = 1;
+                selectedPlatform = null;
+                onboardingProgress = {
+                    step: 1,
+                    platform: null,
+                    setupComplete: false,
+                    securityComplete: false,
+                    tradingComplete: false,
+                    emailVerified: false,
+                    twoFAEnabled: false
+                };
+                
+                // Reset UI
+                document.querySelectorAll('.step-indicator').forEach(indicator => {
+                    indicator.classList.remove('active', 'completed');
+                });
+                document.querySelector('[data-step="1"]').classList.add('active');
+                
+                // Reset form states
+                document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                
+                document.querySelectorAll('.platform-choice, .platform-option, .2fa-option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                
+                // Reset continue buttons
+                document.querySelectorAll('[id$="-continue"]').forEach(btn => {
+                    btn.classList.add('opacity-50', 'cursor-not-allowed');
+                    btn.disabled = true;
+                });
+                
+                showStep(1);
+            }
+        }
+
+        // 
+        // ============================================
+        // EVENT LISTENERS & INITIALIZATION
+        // ============================================
+        // 
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved progress
+            loadProgress();
+            
+            // Set up help button
+            document.getElementById('help-button').addEventListener('click', function() {
+                showModal('help-modal');
+            });
+            
+            // Set up modal close functionality
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('celebration-modal')) {
+                    e.target.classList.remove('active');
+                }
+            });
+            
+            // Initialize risk calculator with default values
+            setTimeout(() => {
+                document.getElementById('portfolio-value').value = '10000';
+                document.getElementById('risk-percent').value = '2';
+                document.getElementById('entry-price').value = '50000';
+                document.getElementById('stop-loss-price').value = '48000';
+                calculateRisk();
+            }, 100);
+            
+            console.log('🚀 CeFi/DeFi Onboarding Platform Initialized');
+            console.log('👨‍💻 Ready for user interaction');
+            console.log('📊 Progress tracking enabled');
+            console.log('🎯 All systems operational');
+        });
+
+        // Keyboard shortcuts for power users
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case 'ArrowRight':
+                        if (currentStep < totalSteps) {
+                            e.preventDefault();
+                            nextStep();
+                        }
+                        break;
+                    case 'ArrowLeft':
+                        if (currentStep > 1) {
+                            e.preventDefault();
+                            prevStep();
+                        }
+                        break;
+                    case 'h':
+                        e.preventDefault();
+                        showModal('help-modal');
+                        break;
+                }
+            }
+        });
+
+        // 
+        // ============================================
+        // EXPORT FOR EXTERNAL INTEGRATION
+        // ============================================
+        // 
+        
+        // Make key functions available globally for external integration
+        window.OnboardingAPI = {
+            getCurrentStep: () => currentStep,
+            getProgress: () => onboardingProgress,
+            jumpToStep: (step) => {
+                if (step >= 1 && step <= totalSteps) {
+                    currentStep = step;
+                    showStep(step);
+                }
+            },
+            resetProgress: restartOnboarding,
+            getSelectedPlatform: () => selectedPlatform,
+            isComplete: () => currentStep === totalSteps
+        };
+    </script>
+</body>
+</html>
