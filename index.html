@@ -674,7 +674,7 @@
     gap:1rem;
     cursor:pointer;
     padding:1.5rem 1.3rem 1.2rem 1.3rem;
-    user-select:none; -webkit-user-select:none;
+    -webkit-user-select:none; user-select:none;
     background:rgba(255,255,255,0.04);
     transition:.2s;
   }
@@ -2746,7 +2746,6 @@ document.getElementById("journalExportBtn").onclick = function() {
     document.getElementById("journal-message").textContent = "";
   }, 3000);
 };
-};
 </script>
 
 <script>
@@ -3157,7 +3156,7 @@ loadJournal();
 <script>
 // Columns to wrap: Thesis (5), Emotion (13), Mistakes (14), Actions (15)
 // Their 0-based indexes: 4, 12, 13, 14
-const WRAP_COLS = [4,12,13,14];
+// Note: WRAP_COLS already declared in previous script block
 
 function fixJournalRows() {
   document.querySelectorAll("#journal-table-body tr").forEach(tr => {
@@ -3255,8 +3254,9 @@ function updatePnlPreview() {
 });
 
 // --- Table logic: always builds Actions, P&L, wrapping ---
-const WRAP_COLS = [4,12,13]; // Thesis, Emotion, Mistakes
-const NUM_COLS = 15;
+// Note: WRAP_COLS already declared in previous script block - using different array for this section
+const WRAP_COLS_TABLE = [4,12,13]; // Thesis, Emotion, Mistakes
+// Note: NUM_COLS already declared in previous script block
 
 // PNL calculation helper
 function calcPNL(entry, exit, size) {
@@ -3271,7 +3271,7 @@ function addJournalRow(rowData = []) {
   for (let i = 0; i < NUM_COLS-1; i++) {
     const td = document.createElement('td');
     td.innerText = rowData[i] || "";
-    if (WRAP_COLS.includes(i)) td.classList.add('wrap-long');
+    if (WRAP_COLS_TABLE.includes(i)) td.classList.add('wrap-long');
     // All editable except PNL (11) and Actions (14)
     if (i !== 11) {
       td.contentEditable = true;
@@ -3316,7 +3316,7 @@ function addJournalRow(rowData = []) {
   tr.appendChild(tdActions);
 
   // Apply text wrapping
-  WRAP_COLS.forEach(idx => {
+  WRAP_COLS_TABLE.forEach(idx => {
     tr.children[idx].style.whiteSpace = "pre-wrap";
     tr.children[idx].style.wordBreak = "break-word";
     tr.children[idx].style.overflowWrap = "break-word";
