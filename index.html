@@ -500,12 +500,12 @@
         </div>
       </div>
       <nav class="flex flex-wrap gap-1 md:gap-2 items-center mt-4 md:mt-0">
+        <button id="onboardingTab" class="tab-btn bg-purple-700 hover:bg-purple-600 px-4 py-2 rounded transition hidden">CeFi/DeFi Onboarding</button>
         <button id="educationTab" class="tab-btn bg-gray-700 hover:bg-blue-800 px-4 py-2 rounded transition hidden">Education</button>
         <button id="syllabusTab" class="tab-btn bg-blue-900 hover:bg-blue-700 px-4 py-2 rounded transition hidden">Syllabus</button>
         <button id="trainingManualTab" class="tab-btn bg-yellow-700 hover:bg-yellow-600 px-4 py-2 rounded transition hidden">Training Manual</button>
         <button id="journalTab" class="tab-btn bg-gray-700 hover:bg-blue-900 px-4 py-2 rounded transition hidden">Journal</button>
         <button id="dashboardTab" class="tab-btn bg-gray-700 hover:bg-blue-900 px-4 py-2 rounded transition hidden">Dashboard</button>
-        <button id="onboardingTab" class="tab-btn bg-purple-700 hover:bg-purple-600 px-4 py-2 rounded transition hidden">CeFi/DeFi Onboarding</button>
         <button id="loginTab" class="tab-btn bg-green-700 hover:bg-green-600 px-4 py-2 rounded transition">Register / Login</button>
         <button id="logoutBtn" class="tab-btn bg-red-700 hover:bg-red-800 px-4 py-2 rounded transition hidden">Logout</button>
       </nav>
@@ -2316,6 +2316,18 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
 
+    <!-- Instructions -->
+    <div class="bg-yellow-900/30 border border-yellow-600 rounded-xl p-6 mb-8">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="text-3xl">📋</span>
+        <h3 class="text-xl font-bold text-yellow-300">How to Use This Onboarding</h3>
+      </div>
+      <p class="text-yellow-200 text-lg">
+        <strong>Click each step to mark it completed. Please complete steps in order.</strong> 
+        The system will guide you through each track step-by-step to ensure proper setup.
+      </p>
+    </div>
+
     <!-- Onboarding Tracks -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
       
@@ -2339,7 +2351,11 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="step-content ml-11">
               <p class="text-gray-300 mb-3">Create and secure your MEXC exchange account</p>
-              <button class="start-step-btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition">Start Step</button>
+              <a href="https://www.mexc.com" target="_blank" rel="noopener" 
+                 class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-lg transition transform hover:scale-105 mb-3 shadow-lg">
+                🏦 Open MEXC &rarr;
+              </a>
+              <button class="start-step-btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition ml-3">Start Step</button>
               
               <!-- Video Placeholder -->
               <div class="video-placeholder bg-gray-700 rounded-lg p-6 mt-4 hidden step-detail">
@@ -2425,25 +2441,39 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="defi-step bg-gray-800 rounded-lg p-4 border-l-4 border-purple-500" data-step="1">
             <div class="flex items-center gap-3 mb-3">
               <div class="step-indicator w-8 h-8 rounded-full bg-purple-500 text-white flex items-center justify-center font-bold">1</div>
-              <h4 class="text-lg font-semibold text-purple-300">Wallet Setup</h4>
+              <h4 class="text-lg font-semibold text-purple-300">Hyperliquid Wallet Setup</h4>
               <span class="step-status ml-auto text-2xl">⏳</span>
             </div>
             <div class="step-content ml-11">
-              <p class="text-gray-300 mb-3">Create and secure your MetaMask wallet</p>
-              <button class="start-step-btn bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded transition">Start Step</button>
+              <p class="text-gray-300 mb-3">Create and secure your Hyperliquid wallet</p>
+              <a href="https://app.hyperliquid.xyz" target="_blank" rel="noopener" 
+                 class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold px-6 py-3 rounded-lg transition transform hover:scale-105 mb-3 shadow-lg">
+                🚀 Open Hyperliquid &rarr;
+              </a>
+              <button class="start-step-btn bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded transition ml-3">Start Step</button>
               
               <!-- Video Placeholder -->
               <div class="video-placeholder bg-gray-700 rounded-lg p-6 mt-4 hidden step-detail">
                 <div class="text-center">
                   <div class="text-4xl mb-3">🎥</div>
-                  <h5 class="text-lg font-semibold mb-2">Video: MetaMask Wallet Setup</h5>
+                  <h5 class="text-lg font-semibold mb-2">Video: Hyperliquid Wallet Setup</h5>
                   <p class="text-gray-400 mb-4">AI Video Generation Instructions:</p>
                   <div class="bg-gray-800 rounded p-4 text-left text-sm space-y-2">
                     <p><strong>For Gemini/HeyGen/Synthesia:</strong></p>
-                    <p>• Script: "Install MetaMask extension, create new wallet, write down seed phrase securely, set strong password, understand wallet security basics."</p>
+                    <p>• Script: "Go to app.hyperliquid.xyz, connect wallet or create new account, understand perpetual trading basics, secure your account with proper settings."</p>
                     <p>• Duration: 3-4 minutes</p>
-                    <p>• Screen recording: Show MetaMask installation and setup</p>
-                    <p>• Voice: Security-focused, cautious tone</p>
+                    <p>• Screen recording: Show Hyperliquid account creation and interface</p>
+                    <p>• Voice: Professional, educational tone</p>
+                  </div>
+                  <div class="mt-4 p-4 bg-purple-900/50 rounded">
+                    <h6 class="font-semibold mb-2">Step-by-step checklist:</h6>
+                    <div class="text-left space-y-1">
+                      <label class="flex items-center gap-2"><input type="checkbox" class="step-checkbox"> Visit app.hyperliquid.xyz</label>
+                      <label class="flex items-center gap-2"><input type="checkbox" class="step-checkbox"> Connect wallet or create account</label>
+                      <label class="flex items-center gap-2"><input type="checkbox" class="step-checkbox"> Complete account verification</label>
+                      <label class="flex items-center gap-2"><input type="checkbox" class="step-checkbox"> Explore the trading interface</label>
+                      <label class="flex items-center gap-2"><input type="checkbox" class="step-checkbox"> Set up security preferences</label>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -2563,7 +2593,7 @@ function isLoggedIn() {
 
 // ---- Nav/UI Update ----
 function updateNavForLogin() {
-  const navButtons = [educationTab, syllabusTab, trainingManualTab, journalTab, dashboardTab, onboardingTab];
+  const navButtons = [onboardingTab, educationTab, syllabusTab, trainingManualTab, journalTab, dashboardTab];
   if (!isLoggedIn()) {
     navButtons.forEach(btn => btn && btn.classList.add("hidden"));
     if (loginTab) loginTab.classList.remove("hidden");
@@ -2573,11 +2603,11 @@ function updateNavForLogin() {
     navButtons.forEach(btn => btn && btn.classList.remove("hidden"));
     if (loginTab) loginTab.classList.add("hidden");
     if (logoutBtn) logoutBtn.classList.remove("hidden");
-    showTab("education");
+    showTab("onboarding");
   }
 }
 function showTab(tab) {
-  [educationTab, syllabusTab, trainingManualTab, journalTab, dashboardTab, onboardingTab, loginTab].forEach(btn => btn && btn.classList.remove("tab-active"));
+  [onboardingTab, educationTab, syllabusTab, trainingManualTab, journalTab, dashboardTab, loginTab].forEach(btn => btn && btn.classList.remove("tab-active"));
   educationContent && educationContent.classList.add("hidden");
   syllabusContent && syllabusContent.classList.add("hidden");
   trainingManualContent && trainingManualContent.classList.add("hidden");
